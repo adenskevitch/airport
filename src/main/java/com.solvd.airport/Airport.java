@@ -32,4 +32,12 @@ public class Airport {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    public List<Flight> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
+    }
 }
