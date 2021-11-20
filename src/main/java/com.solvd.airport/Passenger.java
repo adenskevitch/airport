@@ -6,6 +6,7 @@ public class Passenger {
     private String name;
     private String surname;
     private String passportNumber;
+    private Ticket ticket;
 
     public Long getId() {
         return id;
@@ -37,5 +38,13 @@ public class Passenger {
 
     public void setPassportNumber(String passportNumber) {
         this.passportNumber = passportNumber;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 }

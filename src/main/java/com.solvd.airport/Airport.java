@@ -1,10 +1,13 @@
 package com.solvd.airport;
 
+import java.util.List;
+
 public class Airport {
 
     private Long id;
     private String name;
     private String location;
+    private List<Flight> flights;
 
     public Long getId() {
         return id;
