@@ -1,12 +1,14 @@
 package com.solvd.airport;
 
+import java.util.List;
+
 public class Passenger {
 
     private Long id;
     private String name;
     private String surname;
     private String passportNumber;
-    private Ticket ticket;
+    private List<Ticket> tickets;
 
     public Long getId() {
         return id;
@@ -40,11 +42,11 @@ public class Passenger {
         this.passportNumber = passportNumber;
     }
 
-    public Ticket getTicket() {
-        return ticket;
+    public List<Ticket> getTickets() {
+        return tickets;
     }
 
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }

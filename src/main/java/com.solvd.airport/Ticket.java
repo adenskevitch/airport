@@ -5,7 +5,7 @@ import java.util.Date;
 public class Ticket {
 
     private Long id;
-    private Departure departure;
+    private Flight flight;
     private Date dateOfSale;
 
     public Long getId() {
@@ -16,12 +16,12 @@ public class Ticket {
         this.id = id;
     }
 
-    public Departure getDeparture() {
-        return departure;
+    public Flight getFlight() {
+        return flight;
     }
 
-    public void setDeparture(Departure departure) {
-        this.departure = departure;
+    public void setFlight(Flight flight) {
+        this.flight = flight;
     }
 
     public Date getDateOfSale() {
