@@ -7,7 +7,6 @@ public class Flight {
     private Direction from;
     private Direction to;
     private Aircraft aircraft;
-    private Double cost;
 
     public Long getId() {
         return id;
@@ -47,13 +46,5 @@ public class Flight {
 
     public void setAircraft(Aircraft aircraft) {
         this.aircraft = aircraft;
-    }
-
-    public Double getCost() {
-        return cost;
-    }
-
-    public void setCost(Double cost) {
-        this.cost = cost;
     }
 }

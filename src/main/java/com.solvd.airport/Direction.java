@@ -1,12 +1,12 @@
 package com.solvd.airport;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Direction {
 
     private Long id;
     private Airport airport;
-    private Date time;
+    private LocalDateTime time;
 
     public Long getId() {
         return id;
@@ -24,11 +24,11 @@ public class Direction {
         this.airport = airport;
     }
 
-    public Date getTime() {
+    public LocalDateTime getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
 }
