@@ -1,10 +1,9 @@
 package com.solvd.airport;
 
-public class Employer {
+public class Employee {
 
     private Long id;
     private Position position;
-    private Airline airlineId;
     private String name;
     private String surname;
 
@@ -16,20 +15,12 @@ public class Employer {
         this.id = id;
     }
 
-    public Position getPositionId() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPositionId(Position positionId) {
-        this.position = positionId;
-    }
-
-    public Airline getAirlineId() {
-        return airlineId;
-    }
-
-    public void setAirlineId(Airline airlineId) {
-        this.airlineId = airlineId;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public String getName() {
