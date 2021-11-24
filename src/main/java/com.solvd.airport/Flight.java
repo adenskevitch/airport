@@ -1,15 +1,12 @@
 package com.solvd.airport;
 
-import java.util.Date;
-
 public class Flight {
 
     private Long id;
     private Integer number;
-    private Airport destination;
-    private Airport departure;
-    private Date flightTime;
-    private Double cost;
+    private Direction from;
+    private Direction to;
+    private Aircraft aircraft;
 
     public Long getId() {
         return id;
@@ -27,35 +24,27 @@ public class Flight {
         this.number = number;
     }
 
-    public Airport getDestination() {
-        return destination;
+    public Direction getFrom() {
+        return from;
     }
 
-    public void setDestination(Airport destination) {
-        this.destination = destination;
+    public void setFrom(Direction from) {
+        this.from = from;
     }
 
-    public Airport getDeparture() {
-        return departure;
+    public Direction getTo() {
+        return to;
     }
 
-    public void setDeparture(Airport departure) {
-        this.departure = departure;
+    public void setTo(Direction to) {
+        this.to = to;
     }
 
-    public Date getFlightTime() {
-        return flightTime;
+    public Aircraft getAircraft() {
+        return aircraft;
     }
 
-    public void setFlightTime(Date flightTime) {
-        this.flightTime = flightTime;
-    }
-
-    public Double getCost() {
-        return cost;
-    }
-
-    public void setCost(Double cost) {
-        this.cost = cost;
+    public void setAircraft(Aircraft aircraft) {
+        this.aircraft = aircraft;
     }
 }

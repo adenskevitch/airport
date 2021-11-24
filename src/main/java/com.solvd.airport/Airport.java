@@ -1,10 +1,13 @@
 package com.solvd.airport;
 
+import java.util.List;
+
 public class Airport {
 
     private Long id;
     private String name;
-    private String location;
+    private Address address;
+    private List<Flight> flights;
 
     public Long getId() {
         return id;
@@ -22,11 +25,19 @@ public class Airport {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public List<Flight> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
     }
 }

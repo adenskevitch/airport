@@ -1,14 +1,13 @@
 package com.solvd.airport;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Ticket {
 
     private Long id;
-    private Departure departure;
-    private Aircraft aircraft;
-    private Date departureTime;
-    private Date dateOfSale;
+    private Flight flight;
+    private LocalDateTime dateOfSale;
+    private Double cost;
 
     public Long getId() {
         return id;
@@ -18,35 +17,27 @@ public class Ticket {
         this.id = id;
     }
 
-    public Departure getDeparture() {
-        return departure;
+    public Flight getFlight() {
+        return flight;
     }
 
-    public void setDeparture(Departure departure) {
-        this.departure = departure;
+    public void setFlight(Flight flight) {
+        this.flight = flight;
     }
 
-    public Aircraft getAircraft() {
-        return aircraft;
-    }
-
-    public void setAircraft(Aircraft aircraft) {
-        this.aircraft = aircraft;
-    }
-
-    public Date getDepartureTime() {
-        return departureTime;
-    }
-
-    public void setDepartureTime(Date departureTime) {
-        this.departureTime = departureTime;
-    }
-
-    public Date getDateOfSale() {
+    public LocalDateTime getDateOfSale() {
         return dateOfSale;
     }
 
-    public void setDateOfSale(Date dateOfSale) {
+    public void setDateOfSale(LocalDateTime dateOfSale) {
         this.dateOfSale = dateOfSale;
+    }
+
+    public Double getCost() {
+        return cost;
+    }
+
+    public void setCost(Double cost) {
+        this.cost = cost;
     }
 }

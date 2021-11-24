@@ -3,7 +3,7 @@ package com.solvd.airport;
 public class Aircraft {
 
     private Long id;
-    private String name;
+    private String boardNumber;
     private String type;
     private Integer seatsCount;
 
@@ -15,12 +15,12 @@ public class Aircraft {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getBoardNumber() {
+        return boardNumber;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBoardNumber(String boardNumber) {
+        this.boardNumber = boardNumber;
     }
 
     public String getType() {
