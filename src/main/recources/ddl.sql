@@ -50,37 +50,6 @@ create table if not exists Aircrafts(
         on delete cascade
 );
 
-create table if not exists Flights(
-	id serial,
-	aircraft_id bigint unsigned not null,
-    direction_from bigint unsigned not null,
-    direction_to bigint unsigned not null,
-    numbert integer unsigned unique not null,
-    primary key(id),
-    constraint fk_flights_aircraft_id foreign key(aircraft_id) references aircrafts(id)
-		on update cascade
-        on delete cascade,
-	constraint fk_flights_direction_from foreign key(direction_from) references directions(id)
-		on update cascade
-        on delete cascade,
-	constraint fk_flights_direction_to foreign key(direction_to) references directions(id)
-		on update cascade
-        on delete cascade
-);
-
-create table if not exists airport_fligts(
-	id serial,
-    airport_id bigint unsigned not null,
-    flight_id bigint unsigned not null,
-    primary key(id),
-    constraint fk_airport_fligts_airport_id foreign key(airport_id) references airports(id)
-		on update cascade
-        on delete cascade,
-	constraint fk_airport_fligts_flight_id foreign key(flight_id) references flights(id)
-		on update cascade
-        on delete cascade
-    );
-
 create table if not exists Positions(
 	id serial,
 	name varchar(45) not null,
@@ -101,6 +70,41 @@ create table if not exists Employees(
 		on update cascade
         on delete cascade
 );
+
+create table if not exists Flights(
+	id serial,
+	aircraft_id bigint unsigned not null,
+    direction_from bigint unsigned not null,
+    direction_to bigint unsigned not null,
+    employee_id bigint unsigned not null,
+    number integer unsigned unique not null,
+    primary key(id),
+    constraint fk_flights_aircraft_id foreign key(aircraft_id) references aircrafts(id)
+		on update cascade
+        on delete cascade,
+	constraint fk_flights_direction_from foreign key(direction_from) references directions(id)
+		on update cascade
+        on delete cascade,
+	constraint fk_flights_direction_to foreign key(direction_to) references directions(id)
+		on update cascade
+        on delete cascade,
+    constraint fk_flights_employee_id foreign key(employee_id) references employees(id)
+        on update cascade
+        on delete cascade
+);
+
+create table if not exists airport_flights(
+	id serial,
+    airport_id bigint unsigned not null,
+    flight_id bigint unsigned not null,
+    primary key(id),
+    constraint fk_airport_flights_airport_id foreign key(airport_id) references airports(id)
+		on update cascade
+        on delete cascade,
+	constraint fk_airport_flights_flight_id foreign key(flight_id) references flights(id)
+		on update cascade
+        on delete cascade
+    );
 
 create table if not exists Passengers(
 	id serial,
@@ -124,3 +128,6 @@ create table if not exists Tickets(
 		on update cascade
         on delete cascade
 );
+
+create index idx_tickets_passenger_id 
+	on Tickets(passenger_id);
