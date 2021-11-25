@@ -1,3 +1,5 @@
+#This script adds data to the DB
+
 use airport;
 
 insert into Addresses(country, locality) values
@@ -43,17 +45,17 @@ insert into Airlines(name, country) values
     ('Turkish Airlines', 'Turkey');
 
 insert into Aircrafts(airline_id, board_number, type, seats_count) values
-    (1, 'a523654667', 'airbus A380', 850),
-    (1, 'a6342352', 'airbus A380', 850),
+    (1, 'a523654667', 'airbus A330', 750),
+    (1, 'a6342352', 'airbus A330', 750),
     (2, 't4321', 'ty-204', 210),
     (2, 't23332', 'ty-204', 210),
     (2, 't44312', 'ty-204', 210),
     (2, 't532123', 'ty-204', 210),
     (4, 'a86546743', 'airbus A380', 850),
-    (5, 'a2356467547', 'airbus A380', 850),
+    (5, 'a2356467547', 'airbus A310', 650),
     (6, 'a534245235', 'airbus A380', 850),
-    (7, 'a145325356', 'airbus A380', 850),
-    (7, 'a53567889', 'airbus A380', 850),
+    (7, 'b145325356', 'booing 737', 450),
+    (7, 'b53567889', 'booing 737', 450),
     (8, 'a3211234', 'airbus A380', 850),
     (9, 'a422231', 'airbus A380', 850),
     (10, 'a54433', 'airbus A380', 850),
