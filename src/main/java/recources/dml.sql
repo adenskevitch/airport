@@ -1,6 +1,6 @@
 #This script adds data to the DB
 
-use airport;
+use my_airport;
 
 insert into Addresses(country, locality) values
     ('Netherlands', 'Amsterdam'),

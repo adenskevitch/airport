@@ -1,6 +1,6 @@
 #This script is for practical use of the DB
 
-use airport;
+use my_airport;
 
 #view Addresses
 select * from Addresses;
@@ -21,7 +21,7 @@ select ai.name, ad.country
 		on ai.address_id=ad.id
     where ad.country='Germany';
     
-#change direction from Franch to Netherland
+#change direction from French to Netherlands
 update Directions d join Airports ai 
 		on d.airport_id=ai.id 
 		join Addresses ad 
@@ -112,7 +112,7 @@ delete from Aircrafts where type='ty-204';
 delete from Airlines where country='Russia' or country='Ukraine';
 
 #returns information about all tickets sold after 15 november
-select p.name, p.surname, f.number as FlightNumber, df.time as DepartTime, apf.name as 'From', adf.locality, adf.country, dt.time as AriveTime, apt.name as 'To', adt.locality, adt.country 
+select p.name, p.surname, f.number as FlightNumber, df.time as DepartTime, apf.name as 'From', adf.locality, adf.country, dt.time as ArriveTime, apt.name as 'To', adt.locality, adt.country
 	from Tickets t 
 		left join Passengers p
 			on t.passenger_id=p.id

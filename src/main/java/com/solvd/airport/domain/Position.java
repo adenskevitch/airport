@@ -1,4 +1,4 @@
-package com.solvd.airport;
+package com.solvd.airport.domain;
 
 public class Position {
 

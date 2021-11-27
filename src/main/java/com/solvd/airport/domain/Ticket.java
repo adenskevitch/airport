@@ -1,4 +1,4 @@
-package com.solvd.airport;
+package com.solvd.airport.domain;
 
 import java.time.LocalDateTime;
 
