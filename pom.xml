@@ -6,7 +6,7 @@
 
     <groupId>com.solvd</groupId>
     <artifactId>airport</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>3.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -16,6 +16,7 @@
         <dom>2.3.0-jaxb-1.0.6</dom>
         <jaxb-api>2.1</jaxb-api>
         <jackson>2.13.0</jackson>
+        <mysqlJDBC>8.0.27</mysqlJDBC>
     </properties>
 
     <dependencies>
@@ -39,7 +40,11 @@
             <artifactId>jackson-annotations</artifactId>
             <version>${jackson}</version>
         </dependency>
-
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysqlJDBC}</version>
+        </dependency>
         <dependency>
             <groupId>javax.xml</groupId>
             <artifactId>jaxb-api</artifactId>
