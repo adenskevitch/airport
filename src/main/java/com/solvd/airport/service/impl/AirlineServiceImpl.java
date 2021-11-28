@@ -3,6 +3,9 @@ package com.solvd.airport.service.impl;
 import com.solvd.airport.domain.Aircraft;
 import com.solvd.airport.domain.Airline;
 import com.solvd.airport.domain.Employee;
+import com.solvd.airport.domain.exception.InsertException;
+import com.solvd.airport.domain.exception.ReadDatabaseException;
+import com.solvd.airport.domain.exception.UpdateDatabaseException;
 import com.solvd.airport.persistence.AirlineRepository;
 import com.solvd.airport.persistence.impl.AirlineRepositoryImpl;
 import com.solvd.airport.service.AircraftService;
@@ -28,7 +31,7 @@ public class AirlineServiceImpl implements AirlineService {
     }
 
     @Override
-    public Airline insert(Airline airline) {
+    public Airline insert(Airline airline) throws InsertException {
         airline.setId(null);
         airlineRepository.insert(airline);
         if (airline.getEmployees() != null) {
@@ -37,12 +40,18 @@ public class AirlineServiceImpl implements AirlineService {
                     .collect(Collectors.toList());
             airline.setEmployees(employeeList);
         }
-        if (airline.getAircrafts()!=null) {
+        if (airline.getAircrafts() != null) {
             List<Aircraft> aircraftList = airline.getAircrafts().stream()
                     .map(aircraft -> aircraftService.insert(aircraft, airline.getId()))
                     .collect(Collectors.toList());
             airline.setAircrafts(aircraftList);
         }
         return airline;
+    }
+
+    @Override
+    public List<Aircraft> transferAircrafts(String bordNumber, String toCountry) throws UpdateDatabaseException, ReadDatabaseException {
+        airlineRepository.transferAircrafts(bordNumber, toCountry);
+        return aircraftService.selectAircraftList(toCountry);
     }
 }

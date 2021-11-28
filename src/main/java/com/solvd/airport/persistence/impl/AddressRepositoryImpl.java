@@ -1,6 +1,7 @@
 package com.solvd.airport.persistence.impl;
 
 import com.solvd.airport.domain.Address;
+import com.solvd.airport.domain.exception.InsertException;
 import com.solvd.airport.persistence.AddressRepository;
 import com.solvd.airport.persistence.ConnectionPool;
 
@@ -10,10 +11,12 @@ public class AddressRepositoryImpl implements AddressRepository {
 
     public static final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
+    private static final String ADDRESS_FIELD = "insert into Addresses(country, locality) values (?, ?)";
+
     @Override
-    public void insert(Address address) {
+    public void insert(Address address) throws InsertException {
         Connection connection = connectionPool.getConnection();
-        try (PreparedStatement preparedStatement = connection.prepareStatement("insert into Addresses(country, locality) values (?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(ADDRESS_FIELD, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, address.getCountry());
             preparedStatement.setString(2, address.getLocality());
             preparedStatement.executeUpdate();
@@ -22,7 +25,7 @@ public class AddressRepositoryImpl implements AddressRepository {
                 address.setId(resultSet.getLong(1));
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Unable to create Address", e);
+            throw new InsertException("Address entry failed", e);
         } finally {
             connectionPool.releaseConnection(connection);
         }

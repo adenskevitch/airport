@@ -7,6 +7,14 @@ public class Aircraft {
     private String type;
     private Integer seatsCount;
 
+    @Override
+    public String toString() {
+        return "Aircraft{" +
+                "id=" + id +
+                ", boardNumber='" + boardNumber + '\'' +
+                ", type='" + type + '}';
+    }
+
     public Long getId() {
         return id;
     }

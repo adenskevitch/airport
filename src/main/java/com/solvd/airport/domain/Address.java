@@ -8,6 +8,22 @@ public class Address {
     private String street;
     private String buildNumber;
 
+    public Address(String country, String locality) {
+        this.country = country;
+        this.locality = locality;
+    }
+
+    public Address() {
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "country='" + country + '\'' +
+                ", locality='" + locality + '\'' +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

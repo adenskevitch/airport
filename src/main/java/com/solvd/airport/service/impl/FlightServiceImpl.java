@@ -2,12 +2,17 @@ package com.solvd.airport.service.impl;
 
 import com.solvd.airport.domain.Direction;
 import com.solvd.airport.domain.Flight;
+import com.solvd.airport.domain.exception.InsertException;
 import com.solvd.airport.persistence.FlightRepository;
 import com.solvd.airport.persistence.impl.FlightRepositoryImpl;
 import com.solvd.airport.service.DirectionService;
 import com.solvd.airport.service.FlightService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class FlightServiceImpl implements FlightService {
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private final FlightRepository flightRepository;
     private final DirectionService directionService;
@@ -28,7 +33,11 @@ public class FlightServiceImpl implements FlightService {
             Direction directionTo = directionService.insert(flight.getTo(), flight.getTo().getAirport().getId());
             flight.setTo(directionTo);
         }
-        flightRepository.insert(flight, aircraftId, directionFromId, directionToId, employeeId);
+        try {
+            flightRepository.insert(flight, aircraftId, directionFromId, directionToId, employeeId);
+        } catch (InsertException e) {
+            LOGGER.debug(e.getMessage());
+        }
         return flight;
     }
 }

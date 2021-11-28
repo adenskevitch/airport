@@ -1,25 +1,39 @@
 package com.solvd.airport.service.impl;
 
 import com.solvd.airport.domain.Aircraft;
+import com.solvd.airport.domain.exception.InsertException;
+import com.solvd.airport.domain.exception.ReadDatabaseException;
 import com.solvd.airport.persistence.AircraftRepository;
 import com.solvd.airport.persistence.impl.AircraftRepositoryImpl;
 import com.solvd.airport.service.AircraftService;
-import com.solvd.airport.service.AirlineService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.List;
 
 public class AircraftServiceImpl implements AircraftService {
 
+    private static final Logger LOGGER = LogManager.getLogger();
+
     private final AircraftRepository aircraftRepository;
-    private final AirlineService airlineService;
 
     public AircraftServiceImpl() {
         this.aircraftRepository = new AircraftRepositoryImpl();
-        this.airlineService = new AirlineServiceImpl();
     }
 
     @Override
     public Aircraft insert(Aircraft aircraft, Long airlineId) {
         aircraft.setId(null);
-        aircraftRepository.insert(aircraft, airlineId);
+        try {
+            aircraftRepository.insert(aircraft, airlineId);
+        } catch (InsertException e) {
+            LOGGER.debug(e.getMessage());
+        }
         return aircraft;
+    }
+
+    @Override
+    public List<Aircraft> selectAircraftList(String countryName) throws ReadDatabaseException {
+        return aircraftRepository.selectAircraftList(countryName);
     }
 }

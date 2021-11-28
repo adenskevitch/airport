@@ -10,6 +10,14 @@ public class Passenger {
     private String passportNumber;
     private List<Ticket> tickets;
 
+    @Override
+    public String toString() {
+        return "Passenger{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class ConfigProperties {
 
-    private static final Logger LOGGER= LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
     protected static FileInputStream fileInputStream;
     protected static Properties PROPERTIES;

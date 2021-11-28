@@ -9,6 +9,14 @@ public class Airport {
     private Address address;
     private List<Flight> flights;
 
+    public Airport(String name, Address address) {
+        this.name = name;
+        this.address = address;
+    }
+
+    public Airport() {
+    }
+
     public Long getId() {
         return id;
     }

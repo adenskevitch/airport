@@ -1,9 +1,10 @@
 package com.solvd.airport.persistence;
 
 import com.solvd.airport.domain.Ticket;
+import com.solvd.airport.domain.exception.InsertException;
 
 public interface TicketRepository {
 
-    void insert(Ticket ticket, Long passengerId, Long flightId);
+    void insert(Ticket ticket, Long passengerId, Long flightId) throws InsertException;
 
 }
