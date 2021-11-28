@@ -23,18 +23,18 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public Flight insert(Flight flight, Long aircraftId, Long directionFromId, Long directionToId, Long employeeId) {
+    public Flight create(Flight flight, Long aircraftId, Long directionFromId, Long directionToId, Long employeeId) {
         flight.setId(null);
         if (flight.getFrom() != null) {
-            Direction directionFrom = directionService.insert(flight.getFrom(), flight.getFrom().getAirport().getId());
+            Direction directionFrom = directionService.create(flight.getFrom(), flight.getFrom().getAirport().getId());
             flight.setFrom(directionFrom);
         }
         if (flight.getTo() != null) {
-            Direction directionTo = directionService.insert(flight.getTo(), flight.getTo().getAirport().getId());
+            Direction directionTo = directionService.create(flight.getTo(), flight.getTo().getAirport().getId());
             flight.setTo(directionTo);
         }
         try {
-            flightRepository.insert(flight, aircraftId, directionFromId, directionToId, employeeId);
+            flightRepository.create(flight, aircraftId, directionFromId, directionToId, employeeId);
         } catch (InsertException e) {
             LOGGER.debug(e.getMessage());
         }

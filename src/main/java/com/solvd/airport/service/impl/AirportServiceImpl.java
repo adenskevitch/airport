@@ -26,19 +26,19 @@ public class AirportServiceImpl implements AirportService {
     }
 
     @Override
-    public Airport insert(Airport airport, Long addressId) {
+    public Airport create(Airport airport, Long addressId) {
         airport.setId(null);
         if (airport.getAddress() != null) {
             Address address = null;
             try {
-                address = addressService.insert(airport.getAddress());
+                address = addressService.create(airport.getAddress());
             } catch (InsertException e) {
                 LOGGER.debug(e.getMessage());
             }
             airport.setAddress(address);
         }
         try {
-            airportRepository.insert(airport, addressId);
+            airportRepository.create(airport, addressId);
         } catch (InsertException e) {
             LOGGER.debug(e.getMessage());
         }
@@ -46,20 +46,20 @@ public class AirportServiceImpl implements AirportService {
     }
 
     @Override
-    public List<Airport> insertList(List<Airport> airportList) {
+    public List<Airport> createtList(List<Airport> airportList) {
 
         IntStream.range(0, airportList.size()).forEach(i -> {
             airportList.get(i).setId(null);
             if (airportList.get(i).getAddress() != null) {
                 Address address = null;
                 try {
-                    address = addressService.insert((airportList.get(i).getAddress()));
+                    address = addressService.create((airportList.get(i).getAddress()));
                 } catch (InsertException e) {
                     LOGGER.debug(e.getMessage());
                 }
                 airportList.get(i).setAddress(address);
                 try {
-                    airportRepository.insert(airportList.get(i), airportList.get(i).getAddress().getId());
+                    airportRepository.create(airportList.get(i), airportList.get(i).getAddress().getId());
                 } catch (InsertException e) {
                     LOGGER.debug(e.getMessage());
                 }

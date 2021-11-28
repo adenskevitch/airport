@@ -5,6 +5,6 @@ import com.solvd.airport.domain.exception.InsertException;
 
 public interface AirportRepository {
 
-    void insert(Airport airport, Long addressId) throws InsertException;
+    void create(Airport airport, Long addressId) throws InsertException;
 
 }

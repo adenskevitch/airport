@@ -22,10 +22,10 @@ public class AircraftServiceImpl implements AircraftService {
     }
 
     @Override
-    public Aircraft insert(Aircraft aircraft, Long airlineId) {
+    public Aircraft create(Aircraft aircraft, Long airlineId) {
         aircraft.setId(null);
         try {
-            aircraftRepository.insert(aircraft, airlineId);
+            aircraftRepository.create(aircraft, airlineId);
         } catch (InsertException e) {
             LOGGER.debug(e.getMessage());
         }
@@ -33,7 +33,7 @@ public class AircraftServiceImpl implements AircraftService {
     }
 
     @Override
-    public List<Aircraft> selectAircraftList(String countryName) throws ReadDatabaseException {
-        return aircraftRepository.selectAircraftList(countryName);
+    public List<Aircraft> getAircraftList(String countryName) throws ReadDatabaseException {
+        return aircraftRepository.getAircraftList(countryName);
     }
 }

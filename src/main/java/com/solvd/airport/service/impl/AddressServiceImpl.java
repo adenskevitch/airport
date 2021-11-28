@@ -21,18 +21,18 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Address insert(Address address) throws InsertException {
+    public Address create(Address address) throws InsertException {
         address.setId(null);
-        addressRepository.insert(address);
+        addressRepository.create(address);
         return address;
     }
 
     @Override
-    public List<Address> insertList(List<Address> addressList) {
+    public List<Address> createtList(List<Address> addressList) {
         addressList.forEach(address -> {
             address.setId(null);
             try {
-                addressRepository.insert(address);
+                addressRepository.create(address);
             } catch (InsertException e) {
                 LOGGER.debug(e.getMessage());
             }

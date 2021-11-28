@@ -31,18 +31,18 @@ public class AirlineServiceImpl implements AirlineService {
     }
 
     @Override
-    public Airline insert(Airline airline) throws InsertException {
+    public Airline create(Airline airline) throws InsertException {
         airline.setId(null);
-        airlineRepository.insert(airline);
+        airlineRepository.create(airline);
         if (airline.getEmployees() != null) {
             List<Employee> employeeList = airline.getEmployees().stream()
-                    .map(employee -> employeeService.insert(employee, positionService.insert(employee.getPosition()).getId(), airline.getId()))
+                    .map(employee -> employeeService.create(employee, positionService.create(employee.getPosition()).getId(), airline.getId()))
                     .collect(Collectors.toList());
             airline.setEmployees(employeeList);
         }
         if (airline.getAircrafts() != null) {
             List<Aircraft> aircraftList = airline.getAircrafts().stream()
-                    .map(aircraft -> aircraftService.insert(aircraft, airline.getId()))
+                    .map(aircraft -> aircraftService.create(aircraft, airline.getId()))
                     .collect(Collectors.toList());
             airline.setAircrafts(aircraftList);
         }
@@ -52,6 +52,6 @@ public class AirlineServiceImpl implements AirlineService {
     @Override
     public List<Aircraft> transferAircrafts(String bordNumber, String toCountry) throws UpdateDatabaseException, ReadDatabaseException {
         airlineRepository.transferAircrafts(bordNumber, toCountry);
-        return aircraftService.selectAircraftList(toCountry);
+        return aircraftService.getAircraftList(toCountry);
     }
 }

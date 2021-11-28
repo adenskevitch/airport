@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface AircraftService {
 
-    Aircraft insert(Aircraft aircraft, Long airlineId);
+    Aircraft create(Aircraft aircraft, Long airlineId);
 
-    List<Aircraft> selectAircraftList(String countryName) throws ReadDatabaseException;
+    List<Aircraft> getAircraftList(String countryName) throws ReadDatabaseException;
 
 }

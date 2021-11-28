@@ -14,7 +14,7 @@ public class PositionRepositoryImpl implements PositionRepository {
     private static final String POSITION_ENTRY_FIELD = "insert into Positions(name) values (?)";
 
     @Override
-    public void insert(Position position) throws InsertException {
+    public void create(Position position) throws InsertException {
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(POSITION_ENTRY_FIELD, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, position.getName());

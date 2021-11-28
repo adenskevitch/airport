@@ -14,7 +14,7 @@ public class AirportRepositoryImpl implements AirportRepository {
     private static final String AIRPORT_ENTRY_FIELD = "Insert into Airports(address_id, name) values (?,?)";
 
     @Override
-    public void insert(Airport airport, Long addressId) throws InsertException {
+    public void create(Airport airport, Long addressId) throws InsertException {
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(AIRPORT_ENTRY_FIELD, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setLong(1, addressId);

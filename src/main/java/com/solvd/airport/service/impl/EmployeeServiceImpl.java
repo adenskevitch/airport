@@ -23,14 +23,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee insert(Employee employee, Long positionId, Long airlineId) {
+    public Employee create(Employee employee, Long positionId, Long airlineId) {
         employee.setId(null);
         if(employee.getPosition()!=null){
-            Position position=positionService.insert(employee.getPosition());
+            Position position=positionService.create(employee.getPosition());
             employee.setPosition(position);
         }
         try {
-            employeeRepository.insert(employee, positionId, airlineId);
+            employeeRepository.create(employee, positionId, airlineId);
         } catch (InsertException e) {
             LOGGER.debug(e.getMessage());
         }

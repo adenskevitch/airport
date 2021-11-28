@@ -14,7 +14,7 @@ public class AddressRepositoryImpl implements AddressRepository {
     private static final String ADDRESS_FIELD = "insert into Addresses(country, locality) values (?, ?)";
 
     @Override
-    public void insert(Address address) throws InsertException {
+    public void create(Address address) throws InsertException {
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(ADDRESS_FIELD, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, address.getCountry());

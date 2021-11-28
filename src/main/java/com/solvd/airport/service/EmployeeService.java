@@ -4,6 +4,6 @@ import com.solvd.airport.domain.Employee;
 
 public interface EmployeeService {
 
-    Employee insert(Employee employee, Long positionId, Long airlineId);
+    Employee create(Employee employee, Long positionId, Long airlineId);
 
 }

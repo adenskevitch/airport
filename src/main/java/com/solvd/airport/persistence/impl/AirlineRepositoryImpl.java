@@ -19,7 +19,7 @@ public class AirlineRepositoryImpl implements AirlineRepository {
     private static final String AIRLINE_ENTRY_FIELD = "insert into Airlines(name, country) values (?,?)";
 
     @Override
-    public void insert(Airline airline) throws InsertException {
+    public void create(Airline airline) throws InsertException {
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(AIRLINE_ENTRY_FIELD, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, airline.getName());

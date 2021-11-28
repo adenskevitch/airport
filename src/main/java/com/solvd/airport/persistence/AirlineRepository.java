@@ -6,7 +6,7 @@ import com.solvd.airport.domain.exception.UpdateDatabaseException;
 
 public interface AirlineRepository {
 
-    void insert(Airline airline) throws InsertException;
+    void create(Airline airline) throws InsertException;
 
     void transferAircrafts(String from, String to) throws UpdateDatabaseException;
 

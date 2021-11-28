@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AirportService {
 
-    Airport insert(Airport airport, Long addressId);
+    Airport create(Airport airport, Long addressId);
 
-    List<Airport> insertList(List<Airport> airportList);
+    List<Airport> createtList(List<Airport> airportList);
 }

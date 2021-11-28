@@ -4,6 +4,6 @@ import com.solvd.airport.domain.Ticket;
 
 public interface TicketService {
 
-    Ticket insert(Ticket ticket, Long passengerId, Long flightId);
+    Ticket create(Ticket ticket, Long passengerId, Long flightId);
 
 }

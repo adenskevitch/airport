@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface AircraftRepository {
 
-    void insert(Aircraft aircraft, Long airlineId) throws InsertException;
+    void create(Aircraft aircraft, Long airlineId) throws InsertException;
 
-    List<Aircraft> selectAircraftList(String countryName) throws ReadDatabaseException;
+    List<Aircraft> getAircraftList(String countryName) throws ReadDatabaseException;
 
 }

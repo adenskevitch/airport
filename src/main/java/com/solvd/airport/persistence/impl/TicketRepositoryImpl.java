@@ -14,7 +14,7 @@ public class TicketRepositoryImpl implements TicketRepository {
     private static final String TICKET_ENTRY_FIELD = "Insert into Tickets(passenger_id, flight_id, date_of_sell, cost) values (?, ?, ?, ?)";
 
     @Override
-    public void insert(Ticket ticket, Long passengerId, Long flightId) throws InsertException {
+    public void create(Ticket ticket, Long passengerId, Long flightId) throws InsertException {
         Connection connection = connectionPoll.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(TICKET_ENTRY_FIELD, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setLong(1, passengerId);

@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface AirlineService {
 
-    Airline insert(Airline airline) throws InsertException;
+    Airline create(Airline airline) throws InsertException;
 
     List<Aircraft> transferAircrafts(String bordNumber, String to) throws UpdateDatabaseException, ReadDatabaseException;
 

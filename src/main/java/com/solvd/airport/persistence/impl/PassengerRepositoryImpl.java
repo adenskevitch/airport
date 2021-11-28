@@ -20,7 +20,7 @@ public class PassengerRepositoryImpl implements PassengerRepository {
     private static final String PASSENGER_ENTRY_FIELD = "insert into Passengers(name, surname, passport_number) values (?,?,?)";
 
     @Override
-    public void insert(Passenger passenger) throws InsertException {
+    public void create(Passenger passenger) throws InsertException {
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(PASSENGER_ENTRY_FIELD, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, passenger.getName());
@@ -53,7 +53,7 @@ public class PassengerRepositoryImpl implements PassengerRepository {
     }
 
     @Override
-    public List<Passenger> selectPassengerList() throws ReadDatabaseException {
+    public List<Passenger> getPassengerList() throws ReadDatabaseException {
         Connection connection = connectionPool.getConnection();
         List<Passenger> passengerList = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_LIST)) {

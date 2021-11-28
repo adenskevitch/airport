@@ -14,7 +14,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     private static final String EMPLOYEE_ENTRY_FIELD = "insert into Employees(position_id, airline_id, name, surname) values (?,?,?,?)";
 
     @Override
-    public void insert(Employee employee, Long positionId, Long airlineId) throws InsertException {
+    public void create(Employee employee, Long positionId, Long airlineId) throws InsertException {
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(EMPLOYEE_ENTRY_FIELD, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setLong(1, positionId);

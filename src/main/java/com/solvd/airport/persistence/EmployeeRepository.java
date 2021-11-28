@@ -5,6 +5,6 @@ import com.solvd.airport.domain.exception.InsertException;
 
 public interface EmployeeRepository {
 
-    void insert(Employee employee, Long positionId, Long airlineId) throws InsertException;
+    void create(Employee employee, Long positionId, Long airlineId) throws InsertException;
 
 }

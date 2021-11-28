@@ -5,6 +5,6 @@ import com.solvd.airport.domain.exception.InsertException;
 
 public interface FlightRepository {
 
-    void insert(Flight flight, Long aircraftId, Long directionFrom, Long directionTo, Long employeeId) throws InsertException;
+    void create(Flight flight, Long aircraftId, Long directionFrom, Long directionTo, Long employeeId) throws InsertException;
 
 }

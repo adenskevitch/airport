@@ -6,7 +6,7 @@ import com.solvd.airport.domain.exception.UpdateDatabaseException;
 
 public interface DirectionRepository {
 
-    void insert(Direction direction, Long airportId) throws InsertException;
+    void create(Direction direction, Long airportId) throws InsertException;
 
     String changeDirection(String beforeLocality, String afterLocality) throws UpdateDatabaseException;
 

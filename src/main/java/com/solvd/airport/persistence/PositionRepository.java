@@ -5,6 +5,6 @@ import com.solvd.airport.domain.exception.InsertException;
 
 public interface PositionRepository {
 
-    void insert(Position position) throws InsertException;
+    void create(Position position) throws InsertException;
 
 }

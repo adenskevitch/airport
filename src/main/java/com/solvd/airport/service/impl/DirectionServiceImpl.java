@@ -23,14 +23,14 @@ public class DirectionServiceImpl implements DirectionService {
     }
 
     @Override
-    public Direction insert(Direction direction, Long airportId) {
+    public Direction create(Direction direction, Long airportId) {
         direction.setId(null);
         if (direction.getAirport() != null) {
-            Airport airport = airportService.insert(direction.getAirport(), direction.getAirport().getAddress().getId());
+            Airport airport = airportService.create(direction.getAirport(), direction.getAirport().getAddress().getId());
             direction.setAirport(airport);
         }
         try {
-            directionRepository.insert(direction, airportId);
+            directionRepository.create(direction, airportId);
         } catch (InsertException e) {
             e.printStackTrace();
         }

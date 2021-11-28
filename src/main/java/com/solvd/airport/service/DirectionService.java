@@ -4,6 +4,6 @@ import com.solvd.airport.domain.Direction;
 
 public interface DirectionService {
 
-    Direction insert(Direction direction, Long airportId);
+    Direction create(Direction direction, Long airportId);
 
 }

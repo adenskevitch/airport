@@ -23,10 +23,10 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public Passenger insert(Passenger passenger) {
+    public Passenger create(Passenger passenger) {
         passenger.setId(null);
         try {
-            passengerRepository.insert(passenger);
+            passengerRepository.create(passenger);
         } catch (InsertException e) {
             LOGGER.debug(e.getMessage());
         }
@@ -34,11 +34,11 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public List<Passenger> insertList(List<Passenger> passengerList) {
+    public List<Passenger> createList(List<Passenger> passengerList) {
         passengerList.forEach(passenger -> {
             passenger.setId(null);
             try {
-                passengerRepository.insert(passenger);
+                passengerRepository.create(passenger);
             } catch (InsertException e) {
                 LOGGER.debug(e.getMessage());
             }
@@ -49,6 +49,6 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public List<Passenger> deleteFromPassengersList(String name, String surname) throws DeleteException, ReadDatabaseException {
         passengerRepository.deleteFromPassengersList(name, surname);
-        return passengerRepository.selectPassengerList();
+        return passengerRepository.getPassengerList();
     }
 }

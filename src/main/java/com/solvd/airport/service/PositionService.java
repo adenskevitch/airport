@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface PositionService {
 
-    Position insert(Position position);
+    Position create(Position position);
 
-    List<Position> insertList(List<Position> positionList);
+    List<Position> createList(List<Position> positionList);
 
 }

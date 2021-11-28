@@ -18,7 +18,7 @@ public class AircraftRepositoryImpl implements AircraftRepository {
                                                              "from Aircrafts ac left join Airlines al on ac.airline_id=al.id where al.country=?";
 
     @Override
-    public void insert(Aircraft aircraft, Long airlineId) throws InsertException {
+    public void create(Aircraft aircraft, Long airlineId) throws InsertException {
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement("insert into Aircrafts(airline_id, board_number, type, seats_count) values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setLong(1, airlineId);
@@ -38,7 +38,7 @@ public class AircraftRepositoryImpl implements AircraftRepository {
     }
 
     @Override
-    public List<Aircraft> selectAircraftList(String countryName) throws ReadDatabaseException {
+    public List<Aircraft> getAircraftList(String countryName) throws ReadDatabaseException {
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_AIRCRAFTS_LIST)) {
             preparedStatement.setString(1,countryName);

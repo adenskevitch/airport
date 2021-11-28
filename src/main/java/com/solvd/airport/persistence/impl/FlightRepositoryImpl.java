@@ -14,7 +14,7 @@ public class FlightRepositoryImpl implements FlightRepository {
     private static final String FLIGHT_ENTRY_FIELD = "insert into Flights(aircraft_id, direction_from, direction_to, employee_id, number) values (?,?,?,?,?)";
 
     @Override
-    public void insert(Flight flight, Long aircraftId, Long directionFromId, Long directionToId, Long employeeId) throws InsertException {
+    public void create(Flight flight, Long aircraftId, Long directionFromId, Long directionToId, Long employeeId) throws InsertException {
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(FLIGHT_ENTRY_FIELD, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setLong(1, aircraftId);

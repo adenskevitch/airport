@@ -19,10 +19,10 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public Ticket insert(Ticket ticket, Long passengerId, Long flightId) {
+    public Ticket create(Ticket ticket, Long passengerId, Long flightId) {
         ticket.setId(null);
         try {
-            ticketRepository.insert(ticket, passengerId, flightId);
+            ticketRepository.create(ticket, passengerId, flightId);
         } catch (InsertException e) {
             LOGGER.debug(e.getMessage());
         }

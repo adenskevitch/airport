@@ -9,10 +9,10 @@ import java.util.List;
 
 public interface PassengerRepository {
 
-    void insert(Passenger passenger) throws InsertException;
+    void create(Passenger passenger) throws InsertException;
 
     void deleteFromPassengersList(String name, String surname) throws DeleteException;
 
-    List<Passenger> selectPassengerList() throws ReadDatabaseException;
+    List<Passenger> getPassengerList() throws ReadDatabaseException;
 
 }

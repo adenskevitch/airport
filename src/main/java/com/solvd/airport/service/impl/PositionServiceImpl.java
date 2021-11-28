@@ -21,10 +21,10 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
-    public Position insert(Position position) {
+    public Position create(Position position) {
         position.setId(null);
         try {
-            positionRepository.insert(position);
+            positionRepository.create(position);
         } catch (InsertException e) {
             LOGGER.debug(e.getMessage());
         }
@@ -32,11 +32,11 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
-    public List<Position> insertList(List<Position> positionList) {
+    public List<Position> createList(List<Position> positionList) {
         positionList.forEach(position -> {
             position.setId(null);
             try {
-                positionRepository.insert(position);
+                positionRepository.create(position);
             } catch (InsertException e) {
                 LOGGER.debug(e.getMessage());
             }

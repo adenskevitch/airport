@@ -18,7 +18,7 @@ public class DirectionRepositoryImpl implements DirectionRepository {
     private static final String DIRECTION_ENTRY_FIELD = "insert into Directions(airport_id, time) values (?,?)";
 
     @Override
-    public void insert(Direction direction, Long airportId) throws InsertException{
+    public void create(Direction direction, Long airportId) throws InsertException{
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(DIRECTION_ENTRY_FIELD, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setLong(1, airportId);

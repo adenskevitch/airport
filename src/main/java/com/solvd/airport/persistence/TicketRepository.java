@@ -5,6 +5,6 @@ import com.solvd.airport.domain.exception.InsertException;
 
 public interface TicketRepository {
 
-    void insert(Ticket ticket, Long passengerId, Long flightId) throws InsertException;
+    void create(Ticket ticket, Long passengerId, Long flightId) throws InsertException;
 
 }
