@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.airport.persistence.PassengerRepository">
+
+    <insert id="create" keyProperty="passenger.id" useGeneratedKeys="true">
+        insert into Passengers(name, surname, passport_number)
+        values (#{passenger.name}, #{passenger.surname}, #{passenger.passportNumber})
+    </insert>
+
+    <delete id="deleteFromPassengersList">
+        delete from Passengers
+        where name=#{name} and surname=#{surname}
+    </delete>
+
+    <select id="getPassengerList" resultMap="PassengerList">
+        Select id as PassengerId, name as Name, surname as Surname
+        from Passengers
+    </select>
+
+
+    <resultMap id="PassengerList" type="Passenger" autoMapping="false">
+        <id property="id" column="PassengerId"/>
+        <result property="name" column="Name"/>
+        <result property="surname" column="Surname"/>
+    </resultMap>
+
+</mapper>
+

@@ -12,9 +12,15 @@
     <properties>
         <log4jVersion>2.14.1</log4jVersion>
         <mysqlJDBC>8.0.27</mysqlJDBC>
+        <mybatis>3.5.7</mybatis>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis}</version>
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

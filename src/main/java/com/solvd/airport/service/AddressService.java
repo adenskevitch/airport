@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface AddressService {
 
-    Address create(Address address) throws InsertException;
+    Address create(Address address);
 
-    List<Address> createtList(List<Address> addressList);
+    List<Address> createList(List<Address> addressList);
 
 }

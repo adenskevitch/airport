@@ -2,7 +2,6 @@ package com.solvd.airport.persistence.impl;
 
 import com.solvd.airport.domain.Airline;
 import com.solvd.airport.domain.exception.InsertException;
-import com.solvd.airport.domain.exception.UpdateDatabaseException;
 import com.solvd.airport.persistence.AirlineRepository;
 import com.solvd.airport.persistence.ConnectionPool;
 
@@ -37,14 +36,14 @@ public class AirlineRepositoryImpl implements AirlineRepository {
     }
 
     @Override
-    public void transferAircrafts(String bordNumber, String to) throws UpdateDatabaseException {
+    public void transferAircrafts(String bordNumber, String to) {
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(TRANSFER_AIRCRAFTS)) {
             preparedStatement.setString(1, "Ukraine");
             preparedStatement.setString(2, bordNumber);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new UpdateDatabaseException("Transfer failed.", e);
+            throw new RuntimeException("Transfer failed.", e);
         } finally {
             connectionPool.releaseConnection(connection);
         }

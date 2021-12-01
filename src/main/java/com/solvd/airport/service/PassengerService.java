@@ -9,10 +9,10 @@ import java.util.List;
 
 public interface PassengerService {
 
-    Passenger create(Passenger passenger) throws InsertException;
+    Passenger create(Passenger passenger);
 
     List<Passenger> createList(List<Passenger> passengerList);
 
-    List<Passenger> deleteFromPassengersList(String name, String surname) throws DeleteException, ReadDatabaseException;
+    List<Passenger> deleteFromPassengersList(String name, String surname);
 
 }

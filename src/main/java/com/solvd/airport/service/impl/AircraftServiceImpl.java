@@ -4,7 +4,7 @@ import com.solvd.airport.domain.Aircraft;
 import com.solvd.airport.domain.exception.InsertException;
 import com.solvd.airport.domain.exception.ReadDatabaseException;
 import com.solvd.airport.persistence.AircraftRepository;
-import com.solvd.airport.persistence.impl.AircraftRepositoryImpl;
+import com.solvd.airport.persistence.mappersimpl.AircraftMapperImpl;
 import com.solvd.airport.service.AircraftService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +18,8 @@ public class AircraftServiceImpl implements AircraftService {
     private final AircraftRepository aircraftRepository;
 
     public AircraftServiceImpl() {
-        this.aircraftRepository = new AircraftRepositoryImpl();
+//        this.aircraftRepository = new AircraftRepositoryImpl();
+        this.aircraftRepository = new AircraftMapperImpl();
     }
 
     @Override
@@ -33,7 +34,12 @@ public class AircraftServiceImpl implements AircraftService {
     }
 
     @Override
-    public List<Aircraft> getAircraftList(String countryName) throws ReadDatabaseException {
-        return aircraftRepository.getAircraftList(countryName);
+    public List<Aircraft> getAircraftList(String countryName) {
+        try {
+            return aircraftRepository.getAircraftList(countryName);
+        } catch (ReadDatabaseException e) {
+            LOGGER.debug(e.getMessage());
+        }
+        return null;
     }
 }

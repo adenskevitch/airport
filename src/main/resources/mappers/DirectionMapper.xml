@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.airport.persistence.DirectionRepository">
+
+    <insert id="create" keyProperty="direction.id" useGeneratedKeys="true">
+        insert into Directions(airport_id, time)
+        values (#{airportId}, #{direction.time})
+    </insert>
+
+    <update id="changeDirection">
+        update Directions d join Airports ai
+        on d.airport_id=ai.id join Addresses ad
+        on ai.address_id=ad.id
+        set d.airport_id=(select id from Airports where Airports.address_id=(select id from Addresses where Addresses.locality=#{afterLocality}))
+        where d.airport_id=(select id from Airports where Airports.address_id=(select id from Addresses where Addresses.locality=#{beforeLocality}))
+    </update>
+
+</mapper>
