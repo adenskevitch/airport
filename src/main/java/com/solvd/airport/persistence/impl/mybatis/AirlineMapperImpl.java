@@ -1,4 +1,4 @@
-package com.solvd.airport.persistence.mappersimpl;
+package com.solvd.airport.persistence.impl.mybatis;
 
 import com.solvd.airport.domain.Airline;
 import com.solvd.airport.domain.exception.InsertException;

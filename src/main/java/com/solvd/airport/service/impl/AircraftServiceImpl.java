@@ -4,7 +4,7 @@ import com.solvd.airport.domain.Aircraft;
 import com.solvd.airport.domain.exception.InsertException;
 import com.solvd.airport.domain.exception.ReadDatabaseException;
 import com.solvd.airport.persistence.AircraftRepository;
-import com.solvd.airport.persistence.mappersimpl.AircraftMapperImpl;
+import com.solvd.airport.persistence.impl.mybatis.AircraftMapperImpl;
 import com.solvd.airport.service.AircraftService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,6 +40,11 @@ public class AircraftServiceImpl implements AircraftService {
         } catch (ReadDatabaseException e) {
             LOGGER.debug(e.getMessage());
         }
+        return null;
+    }
+
+    @Override
+    public List<Aircraft> getAircraftsList() {
         return null;
     }
 }

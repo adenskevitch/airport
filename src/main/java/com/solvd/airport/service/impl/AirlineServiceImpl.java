@@ -5,7 +5,7 @@ import com.solvd.airport.domain.Airline;
 import com.solvd.airport.domain.Employee;
 import com.solvd.airport.domain.exception.InsertException;
 import com.solvd.airport.persistence.AirlineRepository;
-import com.solvd.airport.persistence.mappersimpl.AirlineMapperImpl;
+import com.solvd.airport.persistence.impl.mybatis.AirlineMapperImpl;
 import com.solvd.airport.service.AircraftService;
 import com.solvd.airport.service.AirlineService;
 import com.solvd.airport.service.EmployeeService;

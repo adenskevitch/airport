@@ -4,7 +4,7 @@ import com.solvd.airport.domain.Employee;
 import com.solvd.airport.domain.Position;
 import com.solvd.airport.domain.exception.InsertException;
 import com.solvd.airport.persistence.EmployeeRepository;
-import com.solvd.airport.persistence.mappersimpl.EmployeeMapperImpl;
+import com.solvd.airport.persistence.impl.mybatis.EmployeeMapperImpl;
 import com.solvd.airport.service.EmployeeService;
 import com.solvd.airport.service.PositionService;
 import org.apache.logging.log4j.LogManager;

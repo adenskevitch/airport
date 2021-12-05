@@ -10,7 +10,7 @@
     </insert>
     
     <select id="getAircraftList" resultMap="AircraftResultMap">
-        Select ac.id as AircraftID, ac.airline_id as AirlineID, ac.type as Model, ac.board_number as BoardNumber
+        Select ac.id as aircraft_id, ac.airline_id as airline_id, ac.type as aircraft_type, ac.board_number as aircraft_board_number
         from Aircrafts ac left join Airlines al on ac.airline_id=al.id
         where al.country=#{countryName}
     </select>

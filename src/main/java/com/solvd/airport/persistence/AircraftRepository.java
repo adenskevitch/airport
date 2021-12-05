@@ -12,5 +12,4 @@ public interface AircraftRepository {
     void create(@Param("aircraft") Aircraft aircraft, @Param("airlineId") Long airlineId) throws InsertException;
 
     List<Aircraft> getAircraftList(String countryName) throws ReadDatabaseException;
-
 }

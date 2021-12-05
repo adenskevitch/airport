@@ -9,4 +9,31 @@
         values (#{flight.aircraft.id}, #{flight.from.id}, #{flight.to.id}, #{employeeId}, #{flight.number})
     </insert>
 
+    <sql id="getBody">
+        f.number as flight_number,
+        <include refid="com.solvd.airport.persistence.DirectionRepository.getBodyFrom"/>,
+        <include refid="com.solvd.airport.persistence.DirectionRepository.getBodyTo"/>
+    </sql>
+
+    <sql id="getJoins">
+        Flights f
+        on t.flight_id=f.id
+        left join
+        <include refid="com.solvd.airport.persistence.DirectionRepository.getJoinsFrom"/>
+        left join
+        <include refid="com.solvd.airport.persistence.DirectionRepository.getJoinsTo"/>
+    </sql>
+
+    <sql id="getFlightNumber">
+        f.number=5601
+    </sql>
+
+    <resultMap id="FlightResultMap" type="Flight" autoMapping="false">
+        <result property="number" column="flight_number"/>
+        <association property="from" columnPrefix="flight_"
+                     resultMap="com.solvd.airport.persistence.DirectionRepository.DirectionFromResultMap"/>
+        <association property="to" columnPrefix="flight_"
+                     resultMap="com.solvd.airport.persistence.DirectionRepository.DirectionToResultMap"/>
+    </resultMap>
+
 </mapper>

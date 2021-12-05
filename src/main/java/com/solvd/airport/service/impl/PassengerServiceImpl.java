@@ -5,7 +5,7 @@ import com.solvd.airport.domain.exception.DeleteException;
 import com.solvd.airport.domain.exception.InsertException;
 import com.solvd.airport.domain.exception.ReadDatabaseException;
 import com.solvd.airport.persistence.PassengerRepository;
-import com.solvd.airport.persistence.mappersimpl.PassengerMapperImpl;
+import com.solvd.airport.persistence.impl.mybatis.PassengerMapperImpl;
 import com.solvd.airport.service.PassengerService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,6 +53,16 @@ public class PassengerServiceImpl implements PassengerService {
             passengerRepository.deleteFromPassengersList(name, surname);
             return passengerRepository.getPassengerList();
         } catch (DeleteException | ReadDatabaseException e) {
+            LOGGER.debug(e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    public List<Passenger> getTickets() {
+        try {
+            return passengerRepository.getTickets();
+        } catch (ReadDatabaseException e) {
             LOGGER.debug(e.getMessage());
         }
         return null;

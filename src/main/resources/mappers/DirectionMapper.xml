@@ -9,6 +9,45 @@
         values (#{airportId}, #{direction.time})
     </insert>
 
+    <sql id="getBodyFrom">
+        df.time as depart_time,
+        <include refid="com.solvd.airport.persistence.AirportRepository.getBodyFrom"/>
+    </sql>
+
+    <sql id="getJoinsFrom">
+        Directions df
+        on f.direction_from=df.id
+        left join
+        <include refid="com.solvd.airport.persistence.AirportRepository.getJoinsFrom"/>
+
+    </sql>
+
+    <sql id="getFrom">
+        select
+        <include refid="getBodyFrom"/>
+        from
+        <include refid="getJoinsFrom"/>
+    </sql>
+
+    <sql id="getBodyTo">
+        dt.time as arrive_time,
+        <include refid="com.solvd.airport.persistence.AirportRepository.getBodyTo"/>
+    </sql>
+
+    <sql id="getJoinsTo">
+        Directions dt
+        on f.direction_to=dt.id
+        left join
+        <include refid="com.solvd.airport.persistence.AirportRepository.getJoinsTo"/>
+    </sql>
+
+    <sql id="getTo">
+        select
+        <include refid="getBodyTo"/>
+        from
+        <include refid="getJoinsTo"/>
+    </sql>
+
     <update id="changeDirection">
         update Directions d join Airports ai
         on d.airport_id=ai.id join Addresses ad
@@ -16,5 +55,26 @@
         set d.airport_id=(select id from Airports where Airports.address_id=(select id from Addresses where Addresses.locality=#{afterLocality}))
         where d.airport_id=(select id from Airports where Airports.address_id=(select id from Addresses where Addresses.locality=#{beforeLocality}))
     </update>
+
+    <select id="getDirectionFrom" resultMap="DirectionFromResultMap">
+        <include refid="getFrom"/>
+    </select>
+
+    <select id="getDirectionTo" resultMap="DirectionToResultMap">
+        <include refid="getTo"/>
+    </select>
+
+
+    <resultMap id="DirectionFromResultMap" type="Direction" autoMapping="false">
+        <result property="time" column="depart_time"/>
+        <association property="airport" columnPrefix="direction_from_"
+                     resultMap="com.solvd.airport.persistence.AirportRepository.AirportFromResultMap"/>
+    </resultMap>
+
+    <resultMap id="DirectionToResultMap" type="Direction" autoMapping="false">
+        <result property="time" column="arrive_time"/>
+        <association property="airport" columnPrefix="direction_to_"
+                     resultMap="com.solvd.airport.persistence.AirportRepository.AirportToResultMap"/>
+    </resultMap>
 
 </mapper>

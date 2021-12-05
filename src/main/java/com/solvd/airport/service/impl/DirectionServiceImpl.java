@@ -4,7 +4,7 @@ import com.solvd.airport.domain.Airport;
 import com.solvd.airport.domain.Direction;
 import com.solvd.airport.domain.exception.InsertException;
 import com.solvd.airport.persistence.DirectionRepository;
-import com.solvd.airport.persistence.mappersimpl.DirectionMapperImpl;
+import com.solvd.airport.persistence.impl.mybatis.DirectionMapperImpl;
 import com.solvd.airport.service.AirportService;
 import com.solvd.airport.service.DirectionService;
 import org.apache.logging.log4j.LogManager;

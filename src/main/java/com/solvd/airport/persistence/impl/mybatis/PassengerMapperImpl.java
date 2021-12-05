@@ -1,4 +1,4 @@
-package com.solvd.airport.persistence.mappersimpl;
+package com.solvd.airport.persistence.impl.mybatis;
 
 import com.solvd.airport.domain.Passenger;
 import com.solvd.airport.domain.exception.DeleteException;
@@ -29,6 +29,13 @@ public class PassengerMapperImpl implements PassengerRepository {
     public List<Passenger> getPassengerList() throws ReadDatabaseException {
         try (SqlSession session = MyBatisSessionHolder.getSqlSessionFactory().openSession(true)) {
             return session.getMapper(PassengerRepository.class).getPassengerList();
+        }
+    }
+
+    @Override
+    public List<Passenger> getTickets() throws ReadDatabaseException {
+        try (SqlSession session = MyBatisSessionHolder.getSqlSessionFactory().openSession(true)) {
+            return session.getMapper(PassengerRepository.class).getTickets();
         }
     }
 }

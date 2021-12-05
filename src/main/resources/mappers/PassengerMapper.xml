@@ -15,15 +15,54 @@
     </delete>
 
     <select id="getPassengerList" resultMap="PassengerList">
-        Select id as PassengerId, name as Name, surname as Surname
+        Select id as passenger_id, name as passenger_name, surname as passenger_surname
         from Passengers
     </select>
 
+    <sql id="getBody">
+        p.id as passenger_id, p.name as passenger_name,
+        p.surname as passenger_surname,
+        <include refid="com.solvd.airport.persistence.FlightRepository.getBody"/>,
+        <include refid="com.solvd.airport.persistence.TicketRepository.getBody"/>
+    </sql>
 
-    <resultMap id="PassengerList" type="Passenger" autoMapping="false">
-        <id property="id" column="PassengerId"/>
-        <result property="name" column="Name"/>
-        <result property="surname" column="Surname"/>
+    <sql id="getJoins">
+        Passengers p
+        left join
+        <include refid="com.solvd.airport.persistence.TicketRepository.getJoins"/>
+        on t.passenger_id=p.id
+        left join
+        <include refid="com.solvd.airport.persistence.FlightRepository.getJoins"/>
+    </sql>
+    
+    <sql id="get">
+        select
+        <include refid="getBody"/>
+        from
+        <include refid="getJoins"/>
+        where
+        <include refid="com.solvd.airport.persistence.TicketRepository.getDateInterval"/>
+        group by flight_number
+        having
+        <include refid="com.solvd.airport.persistence.FlightRepository.getFlightNumber"/>
+    </sql>
+
+    <select id="getTickets" resultMap="PassengersListResultMap">
+        <include refid="get"/>
+    </select>
+
+    <resultMap id="PassengerList" type="Passenger">
+        <id property="id" column="passenger_id"/>
+        <result property="name" column="passenger_name"/>
+        <result property="surname" column="passenger-surname"/>
+    </resultMap>
+
+    <resultMap id="PassengersListResultMap" type="Passenger" autoMapping="false">
+        <id property="id" column="passenger_id"/>
+        <result property="name" column="passenger_name"/>
+        <result property="surname" column="passenger_surname"/>
+        <collection property="tickets" columnPrefix="passenger_"
+                    resultMap="com.solvd.airport.persistence.TicketRepository.TicketResultMap"/>
     </resultMap>
 
 </mapper>

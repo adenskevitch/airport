@@ -3,7 +3,7 @@ package com.solvd.airport.service.impl;
 import com.solvd.airport.domain.*;
 import com.solvd.airport.domain.exception.InsertException;
 import com.solvd.airport.persistence.FlightRepository;
-import com.solvd.airport.persistence.mappersimpl.FlightMapperImpl;
+import com.solvd.airport.persistence.impl.mybatis.FlightMapperImpl;
 import com.solvd.airport.service.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -4,7 +4,7 @@ import com.solvd.airport.domain.Address;
 import com.solvd.airport.domain.Airport;
 import com.solvd.airport.domain.exception.InsertException;
 import com.solvd.airport.persistence.AirportRepository;
-import com.solvd.airport.persistence.mappersimpl.AirportMapperImpl;
+import com.solvd.airport.persistence.impl.mybatis.AirportMapperImpl;
 import com.solvd.airport.service.AddressService;
 import com.solvd.airport.service.AirportService;
 import org.apache.logging.log4j.LogManager;

@@ -12,8 +12,8 @@ public class Passenger {
 
     @Override
     public String toString() {
-        return "Passenger{" +
-                "name='" + name + '\'' +
+        return "Passenger{id= " + id +
+                ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 '}';
     }

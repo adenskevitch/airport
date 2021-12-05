@@ -6,6 +6,7 @@ import com.solvd.airport.persistence.AddressRepository;
 import com.solvd.airport.persistence.ConnectionPool;
 
 import java.sql.*;
+import java.util.List;
 
 public class AddressRepositoryImpl implements AddressRepository {
 
@@ -29,5 +30,10 @@ public class AddressRepositoryImpl implements AddressRepository {
         } finally {
             connectionPool.releaseConnection(connection);
         }
+    }
+
+    @Override
+    public List<Address> getAddressesList() {
+        return null;
     }
 }

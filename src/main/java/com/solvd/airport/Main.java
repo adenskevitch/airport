@@ -1,18 +1,9 @@
 package com.solvd.airport;
 
-import com.solvd.airport.domain.*;
-import com.solvd.airport.domain.exception.DeleteException;
-import com.solvd.airport.domain.exception.ReadDatabaseException;
-import com.solvd.airport.domain.exception.UpdateDatabaseException;
-import com.solvd.airport.persistence.mappersimpl.AddressMapperImpl;
 import com.solvd.airport.service.*;
 import com.solvd.airport.service.impl.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
@@ -121,11 +112,14 @@ public class Main {
 //        passenger1.setTickets(ticketList);
 
         /*Query to DB*/
-        AirlineService airlineService = new AirlineServiceImpl();
-        LOGGER.debug(airlineService.transferAircrafts("t532123", "Ukraine"));
+//        AirlineService airlineService = new AirlineServiceImpl();
+//        LOGGER.debug(airlineService.transferAircrafts("t532123", "Ukraine"));
+//
+//        PassengerService passengerService = new PassengerServiceImpl();
+//        LOGGER.debug(passengerService.deleteFromPassengersList("Scott", "Simpson"));
 
         PassengerService passengerService = new PassengerServiceImpl();
-        LOGGER.debug(passengerService.deleteFromPassengersList("Scott", "Simpson"));
+        LOGGER.debug(passengerService.getTickets());
 
 
         /*Insert to DB*/

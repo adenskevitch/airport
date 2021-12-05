@@ -16,4 +16,6 @@ public interface PassengerRepository {
 
     List<Passenger> getPassengerList() throws ReadDatabaseException;
 
+    List<Passenger> getTickets() throws ReadDatabaseException;
+
 }

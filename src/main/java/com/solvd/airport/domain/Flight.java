@@ -8,6 +8,13 @@ public class Flight {
     private Direction to;
     private Aircraft aircraft;
 
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "number=" + number +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

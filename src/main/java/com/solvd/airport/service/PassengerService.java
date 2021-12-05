@@ -15,4 +15,6 @@ public interface PassengerService {
 
     List<Passenger> deleteFromPassengersList(String name, String surname);
 
+    List<Passenger> getTickets();
+
 }

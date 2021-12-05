@@ -11,4 +11,6 @@ public interface AircraftService {
 
     List<Aircraft> getAircraftList(String countryName);
 
+    List<Aircraft> getAircraftsList();
+
 }

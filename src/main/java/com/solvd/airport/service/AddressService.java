@@ -11,4 +11,6 @@ public interface AddressService {
 
     List<Address> createList(List<Address> addressList);
 
+    List<Address> getAddressesList();
+
 }
