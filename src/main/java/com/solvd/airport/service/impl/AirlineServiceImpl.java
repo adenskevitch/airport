@@ -61,4 +61,9 @@ public class AirlineServiceImpl implements AirlineService {
         airlineRepository.transferAircrafts(bordNumber, to);
         return aircraftService.getAircraftList(to);
     }
+
+    @Override
+    public List<Airline> getAirlineInfo() {
+        return airlineRepository.getAirlineInfo();
+    }
 }

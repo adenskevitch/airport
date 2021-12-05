@@ -2,9 +2,9 @@ package com.solvd.airport.persistence;
 
 import com.solvd.airport.domain.Airline;
 import com.solvd.airport.domain.exception.InsertException;
-import com.solvd.airport.domain.exception.UpdateDatabaseException;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface AirlineRepository {
 
@@ -12,4 +12,5 @@ public interface AirlineRepository {
 
     void transferAircrafts(@Param("boardNumber") String boardNumber, @Param("to") String to);
 
+    List<Airline> getAirlineInfo();
 }

@@ -6,6 +6,7 @@ import com.solvd.airport.persistence.AirlineRepository;
 import com.solvd.airport.persistence.ConnectionPool;
 
 import java.sql.*;
+import java.util.List;
 
 public class AirlineRepositoryImpl implements AirlineRepository {
 
@@ -47,5 +48,10 @@ public class AirlineRepositoryImpl implements AirlineRepository {
         } finally {
             connectionPool.releaseConnection(connection);
         }
+    }
+
+    @Override
+    public List<Airline> getAirlineInfo() {
+        return null;
     }
 }

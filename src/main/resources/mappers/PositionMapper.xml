@@ -9,4 +9,12 @@
         values (#{name})
     </insert>
 
+    <sql id="getBody">
+        p.name as position_name
+    </sql>
+
+    <sql id="getJoins">
+        Positions p
+    </sql>
+
 </mapper>

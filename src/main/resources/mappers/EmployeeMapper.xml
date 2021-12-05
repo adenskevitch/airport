@@ -9,4 +9,24 @@
         values (#{positionId}, #{airlineId}, #{employee.name}, #{employee.surname})
     </insert>
 
+    <sql id="getBody">
+        e.name as employee_name, e.surname as employee_surname
+    </sql>
+
+    <sql id="getJoins">
+        Employees e
+        on e.airline_id=al.id
+        left join
+        <include refid="com.solvd.airport.persistence.PositionRepository.getJoins"/>
+        on e.position_id=p.id
+    </sql>
+
+    <resultMap id="EmployeesResultMap" type="Employee">
+        <id property="id" column="employee_id"/>
+        <result property="name" column="employee_name"/>
+        <result property="surname" column="employee_surname"/>
+        <association property="position" columnPrefix="employee_"
+                     resultMap="com.solvd.airport.persistence.PositionRepository.PositionResultMap"/>
+    </resultMap>
+
 </mapper>

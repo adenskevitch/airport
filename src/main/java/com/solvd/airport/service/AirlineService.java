@@ -14,4 +14,6 @@ public interface AirlineService {
 
     List<Aircraft> transferAircrafts(String bordNumber, String to);
 
+    List<Airline> getAirlineInfo();
+
 }

@@ -10,6 +10,17 @@ public class Airline {
     private List<Aircraft> aircrafts;
     private List<Employee> employees;
 
+    @Override
+    public String toString() {
+        return "Airline{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", country='" + country + '\'' +
+                ", aircrafts=" + aircrafts +
+                ", employees=" + employees +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

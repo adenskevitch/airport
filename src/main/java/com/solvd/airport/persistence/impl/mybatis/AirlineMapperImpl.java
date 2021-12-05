@@ -6,6 +6,8 @@ import com.solvd.airport.persistence.AirlineRepository;
 import com.solvd.airport.persistence.MyBatisSessionHolder;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.List;
+
 public class AirlineMapperImpl implements AirlineRepository {
 
     @Override
@@ -19,6 +21,13 @@ public class AirlineMapperImpl implements AirlineRepository {
     public void transferAircrafts(String boardNumber, String to) {
         try (SqlSession session = MyBatisSessionHolder.getSqlSessionFactory().openSession(true)) {
             session.getMapper(AirlineRepository.class).transferAircrafts(boardNumber, to);
+        }
+    }
+
+    @Override
+    public List<Airline> getAirlineInfo() {
+        try (SqlSession session = MyBatisSessionHolder.getSqlSessionFactory().openSession(true)) {
+            return session.getMapper(AirlineRepository.class).getAirlineInfo();
         }
     }
 }

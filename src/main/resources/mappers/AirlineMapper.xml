@@ -16,4 +16,33 @@
         where ac.board_number=#{boardNumber}
     </update>
 
+    <sql id="getBody">
+        al.name as airline_name, al.country as airline_country
+    </sql>
+
+    <sql id="getJoins">
+        Airlines al
+        left join
+        <include refid="com.solvd.airport.persistence.AircraftRepository.getJoins"/>
+        on ac.airline_id=al.id
+        left join
+        <include refid="com.solvd.airport.persistence.EmployeeRepository.getJoins"/>
+    </sql>
+
+    <select id="getAirlineInfo" resultMap="AirlineInfoResultMap">
+        select
+        <include refid="getBody"/>
+        from
+        <include refid="getJoins"/>
+    </select>
+
+    <resultMap id="AirlineInfoResultMap" type="Airline">
+        <result property="name" column="airline_name"/>
+        <result property="country" column="airline_country"/>
+        <collection property="aircrafts" columnPrefix="airline_"
+                    resultMap="com.solvd.airport.persistence.AircraftRepository.AircraftsResultMap"/>
+        <collection property="employees" columnPrefix="employee_"
+                    resultMap="com.solvd.airport.persistence.EmployeeRepository.EmployeesResultMap"/>
+    </resultMap>
+
 </mapper>
