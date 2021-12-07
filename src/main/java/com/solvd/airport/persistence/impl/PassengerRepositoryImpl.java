@@ -71,4 +71,9 @@ public class PassengerRepositoryImpl implements PassengerRepository {
         }
         return passengerList;
     }
+
+    @Override
+    public List<Passenger> getTickets() {
+        return null;
+    }
 }

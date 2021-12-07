@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.airport.persistence.AirlineRepository">
+
+    <insert id="create" keyProperty="id" useGeneratedKeys="true">
+        insert into Airlines(name, country)
+        values (#{name}, #{country})
+    </insert>
+
+    <update id="transferAircrafts">
+        update Aircrafts ac join Airlines al
+        on ac.airline_id=al.id
+        set ac.airline_id=(select id from Airlines where Airlines.country=#{to})
+        where ac.board_number=#{boardNumber}
+    </update>
+
+    <sql id="getBody">
+        al.name as airline_name, al.country as airline_country
+    </sql>
+
+    <sql id="getJoins">
+        Airlines al
+        left join
+        <include refid="com.solvd.airport.persistence.AircraftRepository.getJoins"/>
+        on ac.airline_id=al.id
+        left join
+        <include refid="com.solvd.airport.persistence.EmployeeRepository.getJoins"/>
+    </sql>
+
+    <select id="getAirlineInfo" resultMap="AirlineInfoResultMap">
+        select
+        <include refid="getBody"/>
+        from
+        <include refid="getJoins"/>
+    </select>
+
+    <resultMap id="AirlineInfoResultMap" type="Airline">
+        <result property="name" column="airline_name"/>
+        <result property="country" column="airline_country"/>
+        <collection property="aircrafts" columnPrefix="airline_"
+                    resultMap="com.solvd.airport.persistence.AircraftRepository.AircraftsResultMap"/>
+        <collection property="employees" columnPrefix="employee_"
+                    resultMap="com.solvd.airport.persistence.EmployeeRepository.EmployeesResultMap"/>
+    </resultMap>
+
+</mapper>

@@ -8,5 +8,5 @@ public interface AirportService {
 
     Airport create(Airport airport, Long addressId);
 
-    List<Airport> createtList(List<Airport> airportList);
+    List<Airport> createList(List<Airport> airportList);
 }

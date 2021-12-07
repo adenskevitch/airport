@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <properties resource="config.properties"/>
+    <typeAliases>
+        <package name="com.solvd.airport.domain"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mappers/AddressMapper.xml"/>
+        <mapper resource="mappers/AircraftMapper.xml"/>
+        <mapper resource="mappers/AirlineMapper.xml"/>
+        <mapper resource="mappers/AirportMapper.xml"/>
+        <mapper resource="mappers/DirectionMapper.xml"/>
+        <mapper resource="mappers/EmployeeMapper.xml"/>
+        <mapper resource="mappers/FlightMapper.xml"/>
+        <mapper resource="mappers/PassengerMapper.xml"/>
+        <mapper resource="mappers/PositionMapper.xml"/>
+        <mapper resource="mappers/TicketMapper.xml"/>
+<!--        <package name="com.solvd.airport.persistence"/>-->
+    </mappers>
+</configuration>

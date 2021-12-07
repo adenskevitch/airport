@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.airport.persistence.AircraftRepository">
+
+    <insert id="create" keyProperty="aircraft.id" useGeneratedKeys="true">
+        insert into Aircrafts(airline_id, board_number, type, seats_count)
+        values (#{airlineId}, #{aircraft.boardNumber}, #{aircraft.type}, #{aircraft.seatsCount})
+    </insert>
+    
+    <select id="getAircraftList" resultMap="AircraftsResultMap">
+        Select ac.id as aircraft_id, ac.airline_id as airline_id, ac.type as aircraft_type, ac.board_number as aircraft_board_number
+        from Aircrafts ac left join Airlines al on ac.airline_id=al.id
+        where al.country=#{countryName}
+    </select>
+
+    <sql id="getBody">
+        ac.type as aircraft_type, ac.board_number as aircraft_board_number
+    </sql>
+
+    <sql id="getJoins">
+        Aircrafts ac
+    </sql>
+
+    <resultMap id="AircraftsResultMap" type="Aircraft" autoMapping="false">
+        <id property="id" column="aircraft_id"/>
+        <result property="boardNumber" column="BoardNumber"/>
+        <result property="type" column="Model"/>
+    </resultMap>
+    
+</mapper>

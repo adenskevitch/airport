@@ -3,7 +3,7 @@ package com.solvd.airport.service.impl;
 import com.solvd.airport.domain.Address;
 import com.solvd.airport.domain.exception.InsertException;
 import com.solvd.airport.persistence.AddressRepository;
-import com.solvd.airport.persistence.impl.AddressRepositoryImpl;
+import com.solvd.airport.persistence.impl.mybatis.AddressMapperImpl;
 import com.solvd.airport.service.AddressService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,18 +17,23 @@ public class AddressServiceImpl implements AddressService {
     private final AddressRepository addressRepository;
 
     public AddressServiceImpl() {
-        this.addressRepository = new AddressRepositoryImpl();
+        this.addressRepository = new AddressMapperImpl();
+//        this.addressRepository = new AddressRepositoryImpl();
     }
 
     @Override
-    public Address create(Address address) throws InsertException {
+    public Address create(Address address) {
         address.setId(null);
-        addressRepository.create(address);
+        try {
+            addressRepository.create(address);
+        } catch (InsertException e) {
+            LOGGER.debug(e.getMessage());
+        }
         return address;
     }
 
     @Override
-    public List<Address> createtList(List<Address> addressList) {
+    public List<Address> createList(List<Address> addressList) {
         addressList.forEach(address -> {
             address.setId(null);
             try {
@@ -38,5 +43,10 @@ public class AddressServiceImpl implements AddressService {
             }
         });
         return addressList;
+    }
+
+    @Override
+    public List<Address> getAddressesList() {
+        return addressRepository.getAddressesList();
     }
 }

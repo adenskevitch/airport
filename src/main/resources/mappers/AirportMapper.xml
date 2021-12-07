@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.airport.persistence.AirportRepository">
+
+    <insert id="create" keyProperty="airport.id" useGeneratedKeys="true">
+        insert into Airports(address_id, name)
+        values (#{addressId}, #{airport.name})
+    </insert>
+
+    <sql id="getBodyFrom">
+        apf.name as airport_from,
+        <include refid="com.solvd.airport.persistence.AddressRepository.getBodyFrom"/>
+    </sql>
+
+    <sql id="getJoinsFrom">
+        Airports apf
+        on df.airport_id=apf.id
+        left join
+        <include refid="com.solvd.airport.persistence.AddressRepository.getJoinsFrom"/>
+        on apf.address_id=adf.id
+    </sql>
+
+    <sql id="getFrom">
+        select
+        <include refid="getBodyFrom"/>
+        from
+        <include refid="getJoinsFrom"/>
+    </sql>
+
+    <sql id="getBodyTo">
+        apt.name as airport_to,
+        <include refid="com.solvd.airport.persistence.AddressRepository.getBodyTo"/>
+    </sql>
+
+    <sql id="getJoinsTo">
+        Airports apt
+        on dt.airport_id=apt.id
+        left join
+        <include refid="com.solvd.airport.persistence.AddressRepository.getJoinsTo"/>
+        on apt.address_id=adt.id
+    </sql>
+
+    <sql id="getTo">
+        select
+        <include refid="getBodyTo"/>
+        from
+        <include refid="getJoinsTo"/>
+    </sql>
+
+    <select id="getAirportFrom" resultMap="AirportFromResultMap">
+        <include refid="getFrom"/>
+    </select>
+
+    <select id="getAirportTo" resultMap="AirportToResultMap">
+        <include refid="getTo"/>
+    </select>
+
+    <resultMap id="AirportFromResultMap" type="Airport" autoMapping="false">
+        <id property="id" column="airport_from_id"/>
+        <result property="name" column="airport_from"/>
+        <association property="address" columnPrefix="airport_from_"
+                     resultMap="com.solvd.airport.persistence.AddressRepository.AddressFromResultMap"/>
+    </resultMap>
+
+    <resultMap id="AirportToResultMap" type="Airport" autoMapping="false">
+        <id property="id" column="airport_to_id"/>
+        <result property="name" column="airport_to"/>
+        <association property="address" columnPrefix="airport_to_"
+                     resultMap="com.solvd.airport.persistence.AddressRepository.AddressToResultMap"/>
+    </resultMap>
+
+</mapper>

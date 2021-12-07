@@ -6,6 +6,7 @@ import com.solvd.airport.persistence.ConnectionPool;
 import com.solvd.airport.persistence.TicketRepository;
 
 import java.sql.*;
+import java.util.List;
 
 public class TicketRepositoryImpl implements TicketRepository {
 
@@ -31,5 +32,10 @@ public class TicketRepositoryImpl implements TicketRepository {
         } finally {
             connectionPoll.releaseConnection(connection);
         }
+    }
+
+    @Override
+    public List<Ticket> getTickets() {
+        return null;
     }
 }

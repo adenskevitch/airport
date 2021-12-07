@@ -3,7 +3,7 @@ package com.solvd.airport.service.impl;
 import com.solvd.airport.domain.Position;
 import com.solvd.airport.domain.exception.InsertException;
 import com.solvd.airport.persistence.PositionRepository;
-import com.solvd.airport.persistence.impl.PositionRepositoryImpl;
+import com.solvd.airport.persistence.impl.mybatis.PositionMapperImpl;
 import com.solvd.airport.service.PositionService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +17,8 @@ public class PositionServiceImpl implements PositionService {
     private final PositionRepository positionRepository;
 
     public PositionServiceImpl() {
-        this.positionRepository = new PositionRepositoryImpl();
+        this.positionRepository = new PositionMapperImpl();
+//        this.positionRepository = new PositionRepositoryImpl();
     }
 
     @Override

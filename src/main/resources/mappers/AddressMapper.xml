@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.airport.persistence.AddressRepository">
+
+    <insert id="create" keyProperty="id" useGeneratedKeys="true">
+        insert into Addresses(country, locality)
+        values (#{country}, #{locality})
+    </insert>
+
+    <sql id="getBodyFrom">
+        adf.locality as address_locality,
+        adf.country as address_county
+    </sql>
+
+    <sql id="getJoinsFrom">
+        Addresses adf
+    </sql>
+
+    <sql id="getFrom">
+        select
+        <include refid="getBodyFrom"/>
+        from
+        <include refid="getJoinsFrom"/>
+    </sql>
+
+    <sql id="getBodyTo">
+        adt.locality as address_locality,
+        adt.country as address_country
+    </sql>
+
+    <sql id="getJoinsTo">
+        Addresses adt
+    </sql>
+
+    <sql id="getTo">
+        select
+        <include refid="getBodyTo"/>
+        from
+        <include refid="getJoinsTo"/>
+    </sql>
+
+    <select id="getAddressFrom" resultMap="AddressFromResultMap">
+        <include refid="getFrom"/>
+    </select>
+
+    <select id="getAddressTo" resultMap="AddressToResultMap">
+        <include refid="getTo"/>
+    </select>
+
+    <resultMap id="AddressFromResultMap" type="Address" autoMapping="false">
+        <id property="id" column="address_from_id"/>
+        <result property="country" column="address_from_country"/>
+        <result property="locality" column="address_from_locality"/>
+    </resultMap>
+
+    <resultMap id="AddressToResultMap" type="Address" autoMapping="false">
+        <id property="id" column="address_to_id"/>
+        <result property="country" column="address_to_country"/>
+        <result property="locality" column="address_to_locality"/>
+    </resultMap>
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.airport.persistence.TicketRepository">
+
+    <insert id="create" keyProperty="ticket.id" useGeneratedKeys="true">
+        Insert into Tickets(passenger_id, flight_id, date_of_sell, cost)
+        values (#{passengerId}, #{flightId}, #{ticket.date_of_sell}, #{ticket.cost})
+    </insert>
+
+    <sql id="getBody">
+        t.cost as ticket_cost
+    </sql>
+
+    <sql id="getJoins">
+        Tickets t
+    </sql>
+    
+    <sql id="getDateInterval">
+        t.date_of_sell>str_to_date('15-11-2021 12:00', '%d-%c-%Y %H:%i')
+    </sql>
+
+    <resultMap id="TicketResultMap" type="Ticket" autoMapping="false">
+        <association property="flight" columnPrefix="ticket_"
+                     resultMap="com.solvd.airport.persistence.FlightRepository.FlightResultMap"/>
+    </resultMap>
+
+</mapper>

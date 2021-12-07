@@ -4,6 +4,6 @@ import com.solvd.airport.domain.Flight;
 
 public interface FlightService {
 
-    Flight create(Flight flight, Long aircraftId, Long directionFrom, Long directionTo, Long employeeId);
+    Flight create(Flight flight, Long employeeId);
 
 }

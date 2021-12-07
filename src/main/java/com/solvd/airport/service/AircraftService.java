@@ -9,6 +9,8 @@ public interface AircraftService {
 
     Aircraft create(Aircraft aircraft, Long airlineId);
 
-    List<Aircraft> getAircraftList(String countryName) throws ReadDatabaseException;
+    List<Aircraft> getAircraftList(String countryName);
+
+    List<Aircraft> getAircraftsList();
 
 }
