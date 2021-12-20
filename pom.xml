@@ -13,6 +13,7 @@
         <log4jVersion>2.14.1</log4jVersion>
         <mysqlJDBC>8.0.27</mysqlJDBC>
         <mybatis>3.5.7</mybatis>
+        <testNG>7.4.0</testNG>
     </properties>
 
     <dependencies>
@@ -35,6 +36,12 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>${log4jVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testNG}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
