@@ -1,6 +1,6 @@
 #This script is for practical use of the DB
 
-use my_airport;
+use airport;
 
 #view Addresses
 select * from Addresses;

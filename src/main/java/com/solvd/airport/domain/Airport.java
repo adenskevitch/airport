@@ -1,6 +1,7 @@
 package com.solvd.airport.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Airport {
 
@@ -15,6 +16,16 @@ public class Airport {
     }
 
     public Airport() {
+    }
+
+    @Override
+    public String toString() {
+        return "Airport{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address=" + address +
+                ", flights=" + flights +
+                '}';
     }
 
     public Long getId() {
@@ -47,5 +58,18 @@ public class Airport {
 
     public void setFlights(List<Flight> flights) {
         this.flights = flights;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Airport airport = (Airport) o;
+        return name.equals(airport.name) && address.equals(airport.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, address);
     }
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Verification data base requests suite" parallel="methods" thread-count="5">
+
+    <parameter name="country" value="Netherlands"/>
+    <parameter name="locality" value="Amsterdam"/>
+    <parameter name="airportName" value="Amsterdam Airport Schiphol"/>
+
+    <test name="Integration1">
+        <groups>
+            <run>
+                <include name="insert"/>
+                <include name="update"/>
+                <include name="select"/>
+                <exclude name="passenger"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.solvd.airport"/>
+        </packages>
+    </test>
+    
+    <test name="Integration4">
+        <groups>
+            <run>
+                <include name="delete"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.solvd.airport.VerificationDataBaseDelete"/>
+        </classes>
+    </test>
+
+    <test name="Integration5">
+        <classes>
+            <class name="com.solvd.airport.VerificationDataBaseSelect">
+                <methods>
+                    <include name="verifySelectPerson"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

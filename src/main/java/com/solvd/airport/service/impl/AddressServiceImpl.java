@@ -1,6 +1,7 @@
 package com.solvd.airport.service.impl;
 
 import com.solvd.airport.domain.Address;
+import com.solvd.airport.domain.exception.DeleteException;
 import com.solvd.airport.domain.exception.InsertException;
 import com.solvd.airport.persistence.AddressRepository;
 import com.solvd.airport.persistence.impl.mybatis.AddressMapperImpl;
@@ -48,5 +49,19 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public List<Address> getAddressesList() {
         return addressRepository.getAddressesList();
+    }
+
+    @Override
+    public Address getLastAddress() {
+        return addressRepository.getLastAddress();
+    }
+
+    @Override
+    public void deleteFromAddresses(String country, String locality) {
+        try {
+            addressRepository.deleteFromAddresses(country, locality);
+        } catch (DeleteException e) {
+            LOGGER.info(e);
+        }
     }
 }

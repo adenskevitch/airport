@@ -28,6 +28,5 @@
         <mapper resource="mappers/PassengerMapper.xml"/>
         <mapper resource="mappers/PositionMapper.xml"/>
         <mapper resource="mappers/TicketMapper.xml"/>
-<!--        <package name="com.solvd.airport.persistence"/>-->
     </mappers>
 </configuration>

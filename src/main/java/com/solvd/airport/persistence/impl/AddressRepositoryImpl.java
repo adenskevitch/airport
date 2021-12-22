@@ -1,6 +1,7 @@
 package com.solvd.airport.persistence.impl;
 
 import com.solvd.airport.domain.Address;
+import com.solvd.airport.domain.exception.DeleteException;
 import com.solvd.airport.domain.exception.InsertException;
 import com.solvd.airport.persistence.AddressRepository;
 import com.solvd.airport.persistence.ConnectionPool;
@@ -35,5 +36,15 @@ public class AddressRepositoryImpl implements AddressRepository {
     @Override
     public List<Address> getAddressesList() {
         return null;
+    }
+
+    @Override
+    public Address getLastAddress() {
+        return null;
+    }
+
+    @Override
+    public void deleteFromAddresses(String country, String locality) throws DeleteException {
+
     }
 }

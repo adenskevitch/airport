@@ -113,15 +113,15 @@ public class Main {
 
         /*Query to DB*/
         AirlineService airlineService = new AirlineServiceImpl();
-//        LOGGER.debug(airlineService.transferAircrafts("t532123", "Ukraine"));
+        LOGGER.info(airlineService.transferAircrafts("t532123", "Ukraine"));
 //
 //        PassengerService passengerService = new PassengerServiceImpl();
 //        LOGGER.debug(passengerService.deleteFromPassengersList("Scott", "Simpson"));
 
-//        PassengerService passengerService = new PassengerServiceImpl();
-//        LOGGER.debug(passengerService.getTickets());
+        PassengerService passengerService = new PassengerServiceImpl();
+        LOGGER.info(passengerService.getTickets());
 
-        LOGGER.debug(airlineService.getAirlineInfo());
+        LOGGER.info(airlineService.getAirlineInfo());
 
 
         /*Insert to DB*/

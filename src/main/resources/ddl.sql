@@ -1,8 +1,8 @@
 #This script creates our DB
 
-create database if not exists my_airport;
+create database if not exists airport;
 
-use my_airport;
+use airport;
 
 create table if not exists Addresses(
 	id serial,

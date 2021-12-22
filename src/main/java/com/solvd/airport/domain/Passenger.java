@@ -10,10 +10,17 @@ public class Passenger {
     private String passportNumber;
     private List<Ticket> tickets;
 
+    public Passenger(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public Passenger() {
+    }
+
     @Override
     public String toString() {
-        return "Passenger{id= " + id +
-                ", name='" + name + '\'' +
+        return "Passenger{name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 '}';
     }

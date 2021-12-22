@@ -1,5 +1,7 @@
 package com.solvd.airport.domain;
 
+import java.util.Objects;
+
 public class Address {
 
     private Long id;
@@ -62,5 +64,18 @@ public class Address {
 
     public void setBuildNumber(String buildNumber) {
         this.buildNumber = buildNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return country.equals(address.country) && locality.equals(address.locality);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(country, locality);
     }
 }
