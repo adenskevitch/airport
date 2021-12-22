@@ -10,32 +10,43 @@ import org.testng.annotations.*;
 @Test(groups = "update")
 public class VerificationDataBaseUpdate {
 
-    @BeforeSuite(groups = "insert")
+    AircraftService aircraftService;
+    AirlineService airlineService;
+
+    @BeforeSuite
     public void beforeSuite() {
-        System.out.println("Verification data base requests suite get started");
+        //startAnyDriver
+        System.out.println("Verification data base requests suite get started...");
     }
 
-    @BeforeMethod
-    public void beforeUpdateMethod() {
-        System.out.println("New update test to start...");
+    @AfterSuite
+    public void afterSuite() {
+        //closeDriver, unloadingResources
+        System.out.println("Verification data base requests suite was finish");
     }
 
-    @AfterMethod
-    public void afterUpdateTest() {
-        System.out.println("Update test was finish.");
+    @BeforeTest
+    public void beforeSelectTest() {
+        //initialisation required data for test
+        System.out.println("Any update operation...");
+        this.aircraftService = new AircraftServiceImpl();
+        this.airlineService = new AirlineServiceImpl();
+    }
+
+    @AfterTest
+    public void afterSelectTest() {
+        System.out.println("Update was finished.");
+        this.airlineService = null;
+        this.aircraftService = null;
     }
 
     public void verifyTransferAirplane() {
-        AircraftService aircraftService = new AircraftServiceImpl();
-        AirlineService airlineService = new AirlineServiceImpl();
         int aircraftExcepted = aircraftService.getAircraftList("Ukraine").size() + 1;
         Assert.assertEquals(airlineService.transferAircrafts("t532123", "Ukraine").size(), aircraftExcepted);
     }
 
     @Test(dependsOnMethods = "verifyTransferAirplane")
     public void verifyReverseAirplaneTransfer() {
-        AircraftService aircraftService = new AircraftServiceImpl();
-        AirlineService airlineService = new AirlineServiceImpl();
         int aircraftExcepted = aircraftService.getAircraftList("Russia").size() + 1;
         Assert.assertEquals(airlineService.transferAircrafts("t532123", "Russia").size(), aircraftExcepted);
     }

@@ -11,9 +11,21 @@ import org.testng.annotations.*;
 
 public class VerificationDataBaseInsert {
 
+    private AddressService addressService;
+    private AirportService airportService;
+    private Address addressExample;
+    private Airport airportExample;
+    private Airport aptWithoutAddress;
+
+    @Parameters({"country", "locality", "airportName"})
     @BeforeClass(groups = "insert")
-    public void beforeInsertClass() {
+    public void beforeInsertClass(String country, String locality, String airportName) {
         System.out.println("VerificationDataBaseInsert is running");
+        this.addressService = new AddressServiceImpl();
+        this.airportService = new AirportServiceImpl();
+        this.addressExample = new Address(country, locality);
+        this.airportExample = new Airport(airportName, this.addressExample);
+        this.aptWithoutAddress = new Airport(airportName, null);
     }
 
     @AfterClass(groups = "insert")
@@ -21,28 +33,18 @@ public class VerificationDataBaseInsert {
         System.out.println("VerificationDataBaseInsert was finished");
     }
 
-    @Parameters({"country", "locality"})
     @Test(groups = "insert")
-    public void addressInsert(String country, String locality) {
-        AddressService addressService = new AddressServiceImpl();
-        Address addressExample = new Address(country, locality);
+    public void addressInsert() {
         Assert.assertNotNull(addressService.create(addressExample), "Insert Error!");
     }
 
-    @Parameters({"airportName"})
     @Test(dependsOnMethods = "addressInsert", groups = "insert")
-    public void incorrectAirportInsert(String airportName) {
-        AirportService airportService = new AirportServiceImpl();
-        Airport airportExample = new Airport(airportName, null);
-        Assert.assertNull(airportService.create(airportExample, null).getId(), "Airport without address was added!");
+    public void incorrectAirportInsert() {
+        Assert.assertNull(airportService.create(aptWithoutAddress, null).getId(), "Airport without address was added!");
     }
 
-    @Parameters({"country", "locality", "airportName"})
     @Test(dependsOnMethods = "addressInsert", groups = "insert")
-    public void correctAirportInsert(String country, String locality, String airportName) {
-        AirportService airportService = new AirportServiceImpl();
-        Address addressExample = new Address(country, locality);
-        Airport airportExample = new Airport(airportName, addressExample);
+    public void correctAirportInsert() {
         Assert.assertEquals(airportService.create(airportExample, null).getAddress(), addressExample, "The address in the database does not match with entered");
     }
 }

@@ -8,21 +8,25 @@ import com.solvd.airport.service.impl.AddressServiceImpl;
 import com.solvd.airport.service.impl.AirlineServiceImpl;
 import com.solvd.airport.service.impl.PassengerServiceImpl;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class VerificationDataBaseSelect {
 
-    @BeforeTest(groups = "select", alwaysRun = true)
-    public void beforeSelectTest() {
-        System.out.println("Any select operation from DB...");
+    private AddressService addressService;
+    private AirlineService airlineService;
+
+    @BeforeGroups(groups = {"select"})
+    public void beforeDeleteGroupTest() {
+        System.out.println("Delete operations are running...");
+        this.addressService = new AddressServiceImpl();
+        this.airlineService = new AirlineServiceImpl();
     }
 
-    @AfterTest(groups = "select")
-    public void afterSelectTest() {
-        System.out.println("Select was finished.");
+    @AfterGroups(groups = "select")
+    public void afterDeleteGroupTest() {
+        System.out.println("Delete operations was completed...");
+        this.addressService = null;
+        this.airlineService = null;
     }
 
     @DataProvider(name = "passengerList")
@@ -36,6 +40,7 @@ public class VerificationDataBaseSelect {
     }
 
     @Test(dataProvider = "passengerList",
+            alwaysRun = true,
             groups = {"select", "passenger"})
     public void verifySelectPerson(String name, String surname) {
         PassengerService passengerService = new PassengerServiceImpl();
@@ -46,13 +51,11 @@ public class VerificationDataBaseSelect {
 
     @Test(groups = {"select"}, dependsOnGroups = "insert")
     public void verifySelectLastAddress() {
-        AddressService addressService = new AddressServiceImpl();
         Assert.assertEquals("Netherlands", addressService.getLastAddress().getCountry(), "Row is not found.");
     }
 
     @Test(groups = "select")
     public void verifyGetAirlineInfo() {
-        AirlineService airlineService = new AirlineServiceImpl();
         Assert.assertNotNull(airlineService.getAirlineInfo(), "Information hasn't present.");
     }
 }
