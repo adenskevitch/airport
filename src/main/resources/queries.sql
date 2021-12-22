@@ -2,8 +2,18 @@
 
 use airport;
 
+select * from Addresses;
+select * from Aircrafts;
+select * from Passengers;
+
+delete from addresses where country = "Netherlands" and locality = "Amsterdam";
+
 #view Addresses
 select * from Addresses;
+
+        select id as address_id from Addresses
+        where id =(SELECT MAX(`id`) FROM Addresses);
+
 
 #change locality for Germany
 update Addresses 

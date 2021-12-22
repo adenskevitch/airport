@@ -6,14 +6,13 @@
     <parameter name="country" value="Netherlands"/>
     <parameter name="locality" value="Amsterdam"/>
     <parameter name="airportName" value="Amsterdam Airport Schiphol"/>
+    <parameter name="name" value="Gavin"/>
+    <parameter name="surname" value="White"/>
 
     <test name="Integration1">
         <groups>
             <run>
                 <include name="insert"/>
-                <include name="update"/>
-                <include name="select"/>
-                <exclude name="passenger"/>
             </run>
         </groups>
         <packages>
@@ -21,24 +20,28 @@
         </packages>
     </test>
     
-    <test name="Integration4">
+    <test name="Integration2">
         <groups>
             <run>
+                <include name="select"/>
+                <exclude name="delete"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.solvd.airport.AddressTest"/>
+        </classes>
+    </test>
+
+    <test name="Integration3">
+        <groups>
+            <run>
+                <include name="update"/>
                 <include name="delete"/>
             </run>
         </groups>
         <classes>
-            <class name="com.solvd.airport.VerificationDataBaseDelete"/>
-        </classes>
-    </test>
-
-    <test name="Integration5">
-        <classes>
-            <class name="com.solvd.airport.VerificationDataBaseSelect">
-                <methods>
-                    <include name="verifySelectPerson"/>
-                </methods>
-            </class>
+            <class name="com.solvd.airport.AddressTest"/>
+            <class name="com.solvd.airport.PassengerTest"/>
         </classes>
     </test>
 

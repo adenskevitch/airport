@@ -1,6 +1,7 @@
 package com.solvd.airport.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Airline {
 
@@ -9,6 +10,11 @@ public class Airline {
     private String country;
     private List<Aircraft> aircrafts;
     private List<Employee> employees;
+
+    public Airline(String airlineName, String airlineCountry) {
+        this.name = airlineName;
+        this.country = airlineCountry;
+    }
 
     @Override
     public String toString() {
@@ -59,5 +65,18 @@ public class Airline {
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Airline airline = (Airline) o;
+        return name.equals(airline.name) && country.equals(airline.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, country);
     }
 }

@@ -1,4 +1,5 @@
 #This script creates our DB
+drop database if exists airport;
 
 create database if not exists airport;
 
