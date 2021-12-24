@@ -9,6 +9,16 @@
         values (#{country}, #{locality})
     </insert>
 
+    <delete id="deleteFromAddresses" >
+        delete from Addresses
+        where country = #{country} and locality = #{locality}
+    </delete>
+
+    <select id="getLastAddress" resultMap="getLastAddressResultMap">
+        select id as address_id, country as address_country, locality as address_locality from Addresses
+        where id =(SELECT MAX(`id`) FROM Addresses)
+    </select>
+
     <sql id="getBodyFrom">
         adf.locality as address_locality,
         adf.country as address_county
@@ -59,5 +69,11 @@
         <id property="id" column="address_to_id"/>
         <result property="country" column="address_to_country"/>
         <result property="locality" column="address_to_locality"/>
+    </resultMap>
+
+    <resultMap id="getLastAddressResultMap" type="Address" autoMapping="false">
+        <id property="id" column="address_id"/>
+        <result property="country" column="address_country"/>
+        <result property="locality" column="address_locality"/>
     </resultMap>
 </mapper>

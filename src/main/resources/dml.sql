@@ -1,6 +1,6 @@
 #This script adds data to the DB
 
-use my_airport;
+use airport;
 
 insert into Addresses(country, locality) values
     ('Netherlands', 'Amsterdam'),
@@ -97,13 +97,13 @@ insert into Tickets(passenger_id, flight_id, date_of_sell, cost) values
     (1, 1, str_to_date('20-11-2021 15:53', '%d-%c-%Y %H:%i'), 45.50),
     (2, 1, str_to_date('19-11-2021 15:53', '%d-%c-%Y %H:%i'), 45.50),
     (2, 2, str_to_date('19-11-2021 15:53', '%d-%c-%Y %H:%i'), 43.50),
-    (3, 2, str_to_date('18-11-2021 15:53', '%d-%c-%Y %H:%i'), 43.50),
-    (4, 1, str_to_date('21-11-2021 15:53', '%d-%c-%Y %H:%i'), 45.50),
-    (5, 2, str_to_date('21-11-2021 15:53', '%d-%c-%Y %H:%i'), 43.50),
-    (6, 1, str_to_date('17-11-2021 15:53', '%d-%c-%Y %H:%i'), 45.50),
-    (6, 2, str_to_date('17-11-2021 15:53', '%d-%c-%Y %H:%i'), 43.50),
+    (3, 2, str_to_date('14-11-2021 15:53', '%d-%c-%Y %H:%i'), 43.50),
+    (4, 1, str_to_date('14-11-2021 15:53', '%d-%c-%Y %H:%i'), 45.50),
+    (5, 2, str_to_date('14-11-2021 15:53', '%d-%c-%Y %H:%i'), 43.50),
+    (6, 1, str_to_date('14-11-2021 15:53', '%d-%c-%Y %H:%i'), 45.50),
+    (6, 2, str_to_date('13-11-2021 15:53', '%d-%c-%Y %H:%i'), 43.50),
     (7, 1, str_to_date('10-11-2021 15:53', '%d-%c-%Y %H:%i'), 45.50),
     (8, 1, str_to_date('13-11-2021 15:53', '%d-%c-%Y %H:%i'), 45.50),
     (8, 2, str_to_date('13-11-2021 15:53', '%d-%c-%Y %H:%i'), 43.50),
-    (9, 1, str_to_date('15-11-2021 15:53', '%d-%c-%Y %H:%i'), 45.50),
-    (9, 2, str_to_date('15-11-2021 15:53', '%d-%c-%Y %H:%i'), 43.50);
+    (9, 1, str_to_date('12-11-2021 15:53', '%d-%c-%Y %H:%i'), 45.50),
+    (9, 2, str_to_date('12-11-2021 15:53', '%d-%c-%Y %H:%i'), 43.50);
